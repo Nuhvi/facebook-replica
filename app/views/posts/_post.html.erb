@@ -2,5 +2,6 @@
 <br/>
 Content: <%= post.content %><br/>
 Author: <%= post.user.first_name + post.user.last_name %>
+<%= button_to "Delete",post, :method => :delete %>
 <br/>
 <% end %>

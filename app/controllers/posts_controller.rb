@@ -3,6 +3,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create,:destroy]
   before_action :set_post, only: [:destroy,:show]
+  before_action :post_owner?, only: [:destroy]
 
   def new
     @post = Post.new
@@ -34,6 +35,12 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def post_owner?
+    unless @post.user == current_user
+      redirect_to posts_path, alert: "You don't have the authority to delete this post!"
+    end
+  end
 
   def set_post
     @post = Post.find(params[:id])
