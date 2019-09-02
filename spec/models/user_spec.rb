@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'associations' do
-    xit { should have_many(:posts) }
+    it { should have_many(:posts) }
   end
 
   describe 'methods' do
