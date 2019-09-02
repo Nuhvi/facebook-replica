@@ -2,18 +2,21 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create,:destroy]
-  before_action :set_post, only: [:destroy,:show]
-  before_action :post_owner?, only: [:destroy]
+  before_action :set_post, only: [:destroy,:show, :edit]
+  before_action :post_owner?, only: [:destroy, :edit]
 
   def new
     @post = Post.new
     redirect_to new_user_session_path unless current_user
   end
 
-  def edit; end
+  def edit
+  end
 
-  def show
-    @post 
+  def update
+  end
+
+  def show 
   end
 
   def index

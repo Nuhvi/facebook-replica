@@ -30,14 +30,15 @@ RSpec.describe PostsController, type: :controller do
 
   describe '#show' do
     it 'responds successfully' do
-      get :show, params: { user_id: @user.id, id: @post.id }
+      get :show, params: { id: @post.id }
       expect(response).to be_successful
     end
   end
 
   describe '#edit' do
+    before { sign_in @user}
     it 'responds successfully' do
-      get :edit, params: { user_id: @user.id, id: @post.id }
+      get :edit, params: { id: @post.id }
       expect(response).to be_successful
     end
   end
@@ -69,10 +70,23 @@ RSpec.describe PostsController, type: :controller do
           }.not_to change(@user.posts, :count)
         end
 
-        xit 'renders new template' do
+        it 'renders new template' do
+          post_params = FactoryBot.attributes_for(:post, :invalid)
+          post :create, params: { post: post_params }
           expect(response).to render_template(:new)
         end
       end
+    end
+
+    context "as an unauthorized user" do
+      before { sign_in @other_user }
+  
+        it "doesn't create a post" do
+          post_params = FactoryBot.attributes_for(:post, :invalid)
+          expect {
+            post :create, params: { post: post_params }
+          }.not_to change(@user.posts, :count)
+        end
     end
 
     context "as a guest" do
@@ -82,9 +96,9 @@ RSpec.describe PostsController, type: :controller do
         expect(response).not_to be_successful
       end
 
-      xit "redirects to the sign-in page" do
-        project_params = FactoryBot.attributes_for(:project)
-        post :create, params: { project: project_params }
+      it "redirects to the sign-in page" do
+        post_params = FactoryBot.attributes_for(:post)
+        post :create, params: { post: post_params }
         expect(response).to redirect_to "/users/sign_in"
       end
     end
@@ -104,7 +118,7 @@ RSpec.describe PostsController, type: :controller do
   context "as an unauthorized user" do
     before { sign_in @other_user }
 
-      it "delete a post" do
+      it "doesn't delete a post" do
         expect {
           delete :destroy, params: { id: @post.id }
         }.not_to change(@user.posts, :count)
