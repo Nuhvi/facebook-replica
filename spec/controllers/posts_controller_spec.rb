@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
   before { @user = FactoryBot.create(:user) }
-  before { @post = FactoryBot.create(:post) }
-
+  before { @post = @user.posts.create(FactoryBot.attributes_for(:post)) }
+  
   describe '#new' do
     context 'as an authenticated user' do
       before { sign_in @user }
@@ -88,4 +88,26 @@ RSpec.describe PostsController, type: :controller do
       end
     end
   end
+ 
+  describe '#destroy' do
+  context "as an authenticated user" do
+    before { sign_in @user }
+
+      it "delete a post" do
+        expect {
+          delete :destroy, params: { id: @post.id }
+        }.to change(@user.posts, :count).by(-1)
+      end
+
+  
+  end
+
+  context "as a guest" do
+    it "doesnt delete the post" do
+      expect {
+          delete :destroy, params: { id: @post.id }
+        }.not_to change(@user.posts, :count)
+    end
+  end
+end
 end

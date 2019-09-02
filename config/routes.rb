@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :posts
   end
   
-  resources :posts , only: [:show, :new, :create, :index]
+  resources :posts , only: [:show, :new, :create, :index, :destroy]
 
   root 'posts#index'
 end

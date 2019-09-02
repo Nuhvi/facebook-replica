@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: [:create,:destroy]
+  before_action :set_post, only: [:destroy,:show]
+
   def new
     @post = Post.new
     redirect_to new_user_session_path unless current_user
@@ -10,7 +12,7 @@ class PostsController < ApplicationController
   def edit; end
 
   def show
-    @post = Post.includes(:user).find(params[:id])
+    @post 
   end
 
   def index
@@ -27,7 +29,15 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post.destroy
+  end
+
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:content)
