@@ -1,0 +1,5 @@
+<% unless post.nil? %>
+Content: <%= post.content %><br/>
+Author: <%= post.user.first_name + post.user.last_name %>
+
+<% end %>

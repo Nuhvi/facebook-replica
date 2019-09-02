@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
   def new
     @post = Post.new
     redirect_to new_user_session_path unless current_user
@@ -8,10 +9,12 @@ class PostsController < ApplicationController
 
   def edit; end
 
-  def show; end
+  def show
+    @post = Post.includes(:user).find(params[:id])
+  end
 
   def index
-    @posts = User.find(params[:user_id])
+    @posts = Post.all
   end
 
   def create

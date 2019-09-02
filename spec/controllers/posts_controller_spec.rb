@@ -55,7 +55,7 @@ RSpec.describe PostsController, type: :controller do
       context "with valid attributes" do
         it "adds a post" do
           expect {
-            post :create, params: { user_id: @user.id, post: { content: @post.content } }
+            post :create, params: { post: { content: @post.content } }
           }.to change(@user.posts, :count).by(1)
         end
       end
@@ -64,7 +64,7 @@ RSpec.describe PostsController, type: :controller do
         it "does not add a project" do
           post_params = FactoryBot.attributes_for(:post, :invalid)
           expect {
-            post :create, params: { user_id: @user.id, post: post_params }
+            post :create, params: { post: post_params }
           }.not_to change(@user.posts, :count)
         end
 
