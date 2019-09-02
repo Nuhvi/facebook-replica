@@ -1,7 +1,8 @@
 <% unless post.nil? %>
-<br/>
-Content: <%= post.content %><br/>
-Author: <%= post.user.first_name + post.user.last_name %>
-<%= button_to "Delete",post, :method => :delete %>
-<br/>
+    <br/>
+    Content: <%= post.content %><br/>
+    Author: <%= post.user.first_name + post.user.last_name %>
+    <%= link_to "Edit", edit_post_path(post) %>
+    <%= button_to "Delete", post, :method => :delete %>
+    <br/>
 <% end %>
