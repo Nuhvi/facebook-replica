@@ -1,8 +1,16 @@
 <% unless post.nil? %>
-    <br/>
-    Content: <%= post.content %><br/>
-    Author: <%= post.user.first_name + post.user.last_name %>
-    <%= link_to "Edit", edit_post_path(post) %>
-    <%= button_to "Delete", post, :method => :delete %>
-    <br/>
+    <div class='post'>  
+        <div class= 'user'>
+            <%= gravatar_for post.user %>
+            <p> <%= post.user.first_name + post.user.last_name %> </p>
+        </div>
+        <div class='content'>
+            <%= post.content %>
+        </div>
+
+        <% if post.user == current_user %>
+            <%= link_to "Edit", edit_post_path(post) %>
+            <%= button_to "Delete", post, :method => :delete %>
+        <% end %>
+    </div>
 <% end %>

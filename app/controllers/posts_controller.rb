@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   before_action :post_owner?, only: %i[edit update destroy]
 
   def index
+    @post = Post.new
     @posts = Post.all
   end
 
