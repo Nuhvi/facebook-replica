@@ -1,4 +1,6 @@
-<h1>Users's Posts</h1>
-<%= gravatar_for @user %><br/>
+<%= link_to user_path(current_user), class: 'user' do  %>
+   <%= gravatar_for current_user %>
+   <p> <%= current_user.first_name + " " + current_user.last_name %> </p>
+<% end %>
 Bio: <%= @user.bio%>
 <%= render @posts %>

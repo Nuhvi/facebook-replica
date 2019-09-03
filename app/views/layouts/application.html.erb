@@ -13,11 +13,13 @@
     <%= render 'layouts/header' %>
     
     <% if flash.any? %>
-      <% flash.each do |k, message| %>
-        <%= message %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert #{ message_type }"> <%= message %> </div>
       <% end %>
     <% end %>
 
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

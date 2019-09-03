@@ -1,9 +1,9 @@
 <% unless post.nil? %>
     <div class='post'>  
-        <div class= 'user'>
-            <%= gravatar_for post.user %>
-            <p> <%= post.user.first_name + post.user.last_name %> </p>
-        </div>
+        <%= link_to user_path(post.user), class: 'user' do  %>
+            <%= gravatar_for current_user %>
+            <p> <%= post.user.first_name + " " + post.user.last_name %> </p>
+        <% end %>
         <div class='content'>
             <%= post.content %>
         </div>

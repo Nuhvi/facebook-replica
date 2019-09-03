@@ -1,3 +1,8 @@
+<%= link_to user_path(current_user), class: 'user' do  %>
+   <%= gravatar_for current_user %>
+   <p> <%= current_user.first_name + " " + current_user.last_name %> </p>
+<% end %>
+
 <%= render 'post_form'%>
 
 <%= render @posts %>
