@@ -22,7 +22,7 @@ RSpec.describe Post, type: :model do
     before { post_two.update(content: 'updated') }
 
     it 'orders posts in update chronological order' do
-      Post.all.should eq [ post_two, post_three, post_one]
+      Post.all.should eq [post_two, post_three, post_one]
     end
   end
 
