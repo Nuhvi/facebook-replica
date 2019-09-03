@@ -17,7 +17,7 @@ RSpec.describe PostsController, type: :controller do
     end
 
     context 'as a guest' do
-      before {  get :index, params: { user_id: user.id } }
+      before { get :index, params: { user_id: user.id } }
       it 'doesnt respond successfully' do
         expect(response).not_to be_successful
       end
@@ -37,7 +37,7 @@ RSpec.describe PostsController, type: :controller do
     end
 
     context 'as a guest' do
-      before {  get :show, params: { id: @post.id } }
+      before { get :show, params: { id: @post.id } }
       it 'doesnt respond successfully' do
         expect(response).not_to be_successful
       end
