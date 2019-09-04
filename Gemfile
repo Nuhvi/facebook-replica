@@ -38,7 +38,6 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap'
 
-
 gem 'bootstrap', '~> 4.0.0'
 gem 'bootstrap-sass'
 

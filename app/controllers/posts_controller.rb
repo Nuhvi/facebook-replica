@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = Post.all
-    @comment = current_user.comments.build()
+    @comment = current_user.comments.build
   end
 
   def show; end
