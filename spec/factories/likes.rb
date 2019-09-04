@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :like do
-    user { nil }
-    likeable { nil }
-    content { "MyText" }
+    user { FactoryBot.build(:user) }
+    likeable { FactoryBot.build(:post) }
+  
   end
 end
