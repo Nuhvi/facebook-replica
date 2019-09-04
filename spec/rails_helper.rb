@@ -67,12 +67,12 @@ RSpec.configure do |config|
 
   # capybara headless test for system
   config.before(:each, type: :system) do
-		driven_by(:rack_test)
-	end
-	
-	config.before(:each, type: :system, js: true) do
-		driven_by(:selenium_chrome_headless)
-	end
+    driven_by(:rack_test)
+  end
+
+  config.before(:each, type: :system, js: true) do
+    driven_by(:selenium_chrome_headless)
+  end
 end
 
 Shoulda::Matchers.configure do |config|
