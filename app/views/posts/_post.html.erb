@@ -12,5 +12,16 @@
             <%= link_to "Edit", edit_post_path(post) %>
             <%= button_to "Delete", post, :method => :delete %>
         <% end %>
+
+        <% if current_user %>
+            <%= form_for current_user.comments.new do |f| %>
+                <%= render 'devise/shared/error_messages', resource: f.object %>
+                <%= f.hidden_field :post_id, value: post.id %>
+                <div class="field">
+                <%= f.text_area :content, placeholder: "What's hapening ..." %>
+                </div>
+                <%= f.submit "Comment", class: "btn btn-primary" %>
+            <% end %>
+        <% end %>
     </div>
 <% end %>
