@@ -203,6 +203,11 @@ RSpec.describe PostsController, type: :controller do
           delete :destroy, params: { id: @post.id }
         end.to change(user.posts, :count).by(-1)
       end
+
+      it 'redirects to the root url' do
+        delete :destroy, params: { id: @post.id }
+        expect(response).to redirect_to root_url
+      end
     end
 
     context 'as an unauthorized user' do
