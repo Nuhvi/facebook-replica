@@ -1,4 +1,4 @@
-<header >
+<header class= "navbar navbar-expand-md navbar-dark fixed-top bg-dark" >
     <% if user_signed_in? %>
     Logged in as <strong><%= current_user.email %></strong>.
     <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
