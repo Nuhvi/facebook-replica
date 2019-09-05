@@ -1,0 +1,16 @@
+<% unless post.nil? %>
+    <div class='post'>  
+        <%= link_to user_path(post.user), class: 'user' do  %>
+            <%= gravatar_for current_user %>
+            <p> <%= post.user.first_name + " " + post.user.last_name %> </p>
+        <% end %>
+        <div class='content'>
+            <%= post.content %>
+        </div>
+
+        <% if post.user == current_user %>
+            <%= link_to "Edit", edit_post_path(post) %>
+            <%= button_to "Delete", post, :method => :delete %>
+        <% end %>
+    </div>
+<% end %>

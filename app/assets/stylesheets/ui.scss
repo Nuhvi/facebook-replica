@@ -1,0 +1,25 @@
+.post {
+    width: 100%;
+    padding: 1rem;
+
+    .content {
+        margin-left: 60px;
+    }
+}
+
+.user {
+    display: flex;
+    height: 50px;
+
+    img {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+    }
+
+    p {
+        margin: 0;
+        margin-left: 1rem;
+        font-weight: bold;
+    }
+}

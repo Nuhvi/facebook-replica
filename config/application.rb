@@ -29,5 +29,12 @@ module FacebookReplica
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    # Don't generate views, helpers or routing specs.
+    config.generators do |g|
+      g.test_framework :rspec,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false
+    end
   end
 end

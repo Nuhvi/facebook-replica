@@ -1,24 +1,58 @@
-# README
+# Facebook Replica
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+  
+## Demo
+Herouku link // later
+  
+## Features
+  - **User**
+    - Sign-up / login / logout
+    - Show profile page
+    - Create / update / delete posts
+    - Has many posts
 
-Things you may want to cover:
+  - **Post**
+    - Create / update / delete
+    - Show in chronological update order
+    - Belongs to a User
 
-* Ruby version
+## Local Installation
 
-* System dependencies
+### Requirements
+- Ruby '2.6.0'
+- Bundler
+- Rails 5.2.3
+- Postgresql
 
-* Configuration
+### Getting Started
 
-* Database creation
+Clone the repo and then install the needed gems:
 
-* Database initialization
+```console
+ bundle install --without production
+```
 
-* How to run the test suite
+Migrate the database:
 
-* Services (job queues, cache servers, search engines, etc.)
+```console
+ rails db:migrate
+```
 
-* Deployment instructions
+Populate the database:
 
-* ...
+```console
+ rails db:seed
+```
+
+You'll be ready to run the app in a local server:
+
+```console
+ rails server
+```
+Visit http://localhost:3000/
+
+## Authors 
+
+**[Quynh Yen Vo T.](https://github.com/themonster2015)**
+
+**[Nazeh](https://github.com/Nazeh)**
