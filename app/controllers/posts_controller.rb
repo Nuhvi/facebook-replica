@@ -29,7 +29,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    render :edit unless @post.update(post_params)
+    if @post.update(post_params)
+      flash[:notice] = 'Post was successfully created.'
+      redirect_to @post
+    else
+      render :edit
+    end
   end
 
   def destroy
