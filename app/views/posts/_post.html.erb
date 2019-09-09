@@ -1,27 +1,37 @@
 <% unless post.nil? %>
-    <div class='post'>  
-        <%= link_to user_path(post.user), class: 'user' do  %>
-            <%= gravatar_for current_user %>
-            <p> <%= post.user.first_name + " " + post.user.last_name %> </p>
-        <% end %>
+    <div class='post card'> 
+        <div class="header">
+            <div class="left">
+                <%= link_to(post.user) do %>
+                    <%= avatar_for current_user %>
+                <% end %>
+                <div class="name-time">
+                    <%= link_to(post.user) do %>
+                        <p class='username'> <%= post.user.first_name + " " + post.user.last_name %> </p>
+                    <% end %>
+                    <%= link_to post.created_at , post, class: 'post_time'%>
+                </div>
+            </div>
+
+            <% if post.user == current_user %>
+                <div class="menu">
+                    <%= link_to "Edit", edit_post_path(post) %>
+                    <%= button_to "Delete", post, :method => :delete %>
+                </div>
+            <% end %>
+        </div>
+
         <div class='content'>
             <%= post.content %>
         </div>
 
-        <% if post.user == current_user %>
-            <%= link_to "Edit", edit_post_path(post) %>
-            <%= button_to "Delete", post, :method => :delete %>
-        <% end %>
-
-        <% if current_user %>
-            <%= form_for current_user.comments.new do |f| %>
-                <%= render 'devise/shared/error_messages', resource: f.object %>
-                <%= f.hidden_field :post_id, value: post.id %>
-                <div class="field">
-                <%= f.text_area :content, placeholder: "What's hapening ..." %>
-                </div>
-                <%= f.submit "Comment", class: "btn btn-primary" %>
-            <% end %>
+        <% if signed_in? %>
+                <%= form_for current_user.comments.new do |f| %>
+                    <%= render 'devise/shared/error_messages', resource: f.object %>
+                    <%= f.hidden_field :post_id, value: post.id %>
+                    <%= f.text_field :content, placeholder: "Write a comment...", class: 'form-control', required: true, autocomplete: 'off' %>
+                    <%= f.submit "Comment", class: "btn btn-primary" %>
+                <% end %>
         <% end %>
     </div>
 <% end %>

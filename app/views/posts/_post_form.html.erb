@@ -1,7 +1,10 @@
-<%= form_for @post do |f| %>
-    <%= render 'devise/shared/error_messages', resource: f.object %>
-    <div class="field">
-        <%= f.text_area :content, placeholder: "What's hapening ..." %>
-    </div>
-    <%= f.submit "Post", class: "btn btn-primary" %>
-<% end %>
+<div class= "new-post card mb-5">
+    <%= avatar_for current_user %>
+    <%= form_for @post do |f|%>
+        <%= render 'devise/shared/error_messages', resource: f.object %>
+        <div class="field">
+            <%= f.text_field :content, placeholder: "What's on your mind?" , class: 'form-control', required: true, autocomplete: 'off'%>
+        </div>
+        <%= f.submit "Post", class: "btn btn-primary" %>
+    <% end %>
+</div>

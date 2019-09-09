@@ -1,12 +1,54 @@
 
-
+// Alert
 .alert{
     max-width: 600px;
     margin: auto;
     margin-bottom: 1rem;
 }
 
+// Header
+header {
+    .container {
+        height: 3rem;
+        max-width: 600px;
+        padding: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &.top{
+            justify-content: left;
+            h1{
+                font-size: 2rem;
+                font-weight: bold;
+                margin: 0;
+            }
+        }
+    }
+
+    nav{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        
+        font-size: 1rem;
+        font-weight: bold;
+    }
+}
+
+// Feed
 main {
     max-width: 600px;
     margin: auto;
+    padding: 1rem 0 ;
+
+    background-color: #f3f3f5;
+
+    border-left: 2px solid #ecebee;
+    border-right: 2px solid #ecebee;
+
+
+    .timeline_container {
+        padding: 1rem 2rem ;
+    }
 }
