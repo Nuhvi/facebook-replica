@@ -9,7 +9,9 @@
                     <%= link_to(post.user) do %>
                         <p class='username'> <%= post.user.first_name + " " + post.user.last_name %> </p>
                     <% end %>
-                    <%= link_to post.created_at , post, class: 'post_time'%>
+                    <%= link_to(post) do%>
+                        <p class="post_time"> Published <%= time_ago_in_words(post.created_at) %> ago </p>
+                    <% end %>
                 </div>
             </div>
 

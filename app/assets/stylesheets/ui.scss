@@ -84,9 +84,14 @@ a {
                 .post_time {
                     font-size: 10px;
                     color: gray;
+                    margin: 0;
                 }
             }
         }
+    }
+
+    .content {
+        margin-bottom: 1rem;
     }
 
     .new_comment {

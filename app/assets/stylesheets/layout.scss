@@ -1,13 +1,24 @@
-
 // Alert
-.alert{
-    max-width: 600px;
-    margin: auto;
-    margin-bottom: 1rem;
+.alert-container {
+    position: absolute;
+    z-index: 999999;
+    width: 100%;
+    top: 1rem;
+
+    .alert {
+        width: 50%;
+        margin: auto;
+    }
 }
 
 // Header
 header {
+    position: sticky;
+    top: -3rem;
+    z-index: 9999;
+    background-color: white;
+    border-bottom: 1px solid #ecebee;
+
     .container {
         height: 3rem;
         max-width: 600px;
@@ -16,9 +27,10 @@ header {
         align-items: center;
         justify-content: space-between;
 
-        &.top{
+        &.top {
             justify-content: left;
-            h1{
+
+            h1 {
                 font-size: 2rem;
                 font-weight: bold;
                 margin: 0;
@@ -26,11 +38,11 @@ header {
         }
     }
 
-    nav{
+    nav {
         width: 100%;
         display: flex;
         justify-content: space-between;
-        
+
         font-size: 1rem;
         font-weight: bold;
     }
@@ -38,9 +50,10 @@ header {
 
 // Feed
 main {
+    min-height: 100vh;
     max-width: 600px;
     margin: auto;
-    padding: 1rem 0 ;
+    padding: 1rem 0;
 
     background-color: #f3f3f5;
 
@@ -49,6 +62,6 @@ main {
 
 
     .timeline_container {
-        padding: 1rem 2rem ;
+        padding: 1rem 2rem;
     }
 }
