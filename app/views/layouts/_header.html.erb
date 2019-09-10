@@ -1,17 +1,19 @@
 
 <% if user_signed_in? %>
     <header >
-        <div class="container top">
-            <%= avatar_for current_user %>
-            <h1 class=" ml-2"> <%= yield(:title) %> </h1>
-        </div>
-        <div class="container">
-            <nav>
-                <%= link_to 'Home', root_url, :class => 'navbar-link' %>
-                <%= link_to 'Find Users', users_path, :class => 'navbar-link' %>
-                <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
-                <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-            </nav>
+        <div class='wrapper'>
+            <div class="container top">
+                <%= avatar_for current_user %>
+                <h1 class=" ml-2"> <%= yield(:title) %> </h1>
+            </div>
+            <div class="container">
+                <nav>
+                    <%= link_to 'Home', root_url, :class => 'navbar-link' %>
+                    <%= link_to 'Find Users', users_path, :class => 'navbar-link' %>
+                    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
+                    <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+                </nav>
+            </div>
         </div>
     </header>
 <% end %>

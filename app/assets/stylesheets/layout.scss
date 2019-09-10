@@ -16,13 +16,19 @@ header {
     position: sticky;
     top: -3rem;
     z-index: 9999;
-    background-color: white;
-    border-bottom: 1px solid #ecebee;
+    .wrapper {
+        position: absolute;
+        left: 0;
+        right: 0;
+        background-color: white;
+        border-bottom: 1px solid #ecebee;
+    }
 
     .container {
         height: 3rem;
         max-width: 600px;
         padding: .5rem;
+
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -59,6 +65,8 @@ main {
     min-height: 100vh;
     max-width: 600px;
     margin: auto;
+
+    padding-top: 6rem;
 
     background-color: #f3f3f5;
 
