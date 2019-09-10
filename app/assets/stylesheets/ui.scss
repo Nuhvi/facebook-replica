@@ -145,6 +145,16 @@ a {
         }
     }
 
+    .like-comment {
+        a {
+            color: gray;
+            
+            &:hover {
+                color: black;
+            }
+        }
+    }
+
     .comment {
         .avatar {
             display: block;

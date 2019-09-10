@@ -1,5 +1,9 @@
 <% provide(:title, 'Home') %>
 
-<%= render 'post_form'%>
+<div class= "new-post card mb-5">
+    <%= avatar_for current_user %>
+    <%= render 'post_form'%>
+</div>
+
 
 <%= render @posts %>

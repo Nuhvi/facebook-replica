@@ -31,7 +31,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      flash[:notice] = 'Post was successfully created.'
+      flash[:notice] = 'Post was successfully updated.'
       redirect_to @post
     else
       render :edit

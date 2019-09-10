@@ -2,17 +2,30 @@
 
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_comment, only: %i[edit update destroy]
 
   def create
     @comment = current_user.comments.build(comment_params)
-    if @comment.save
+    return unless @comment.save
 
-    else
-      redirect_to root_url
-    end
+    flash[:notice] = 'Comment was successfully posted.'
+    redirect_to root_url
+  end
+
+  def edit; end
+
+  def update; end
+
+  def destroy
+    @post.destroy
+    redirect_to root_url
   end
 
   private
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
   def comment_params
     params.require(:comment).permit(:content, :post_id)
