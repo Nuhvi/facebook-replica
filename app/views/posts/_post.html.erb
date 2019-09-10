@@ -1,3 +1,5 @@
+<% is_edit = request.fullpath[-5..-1] == '/edit' %>
+
 <% unless post.nil? %>
     <div class='post card'> 
         <div class="header">
@@ -11,7 +13,7 @@
                 </div>
             </div>
 
-            <% if post.user == current_user %>
+            <% if post.user == current_user && !is_edit %>
                 <div class="dropdown">
                     <button class="btn " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <%= fa_icon "ellipsis-h" %>
@@ -24,34 +26,36 @@
             <% end %>
         </div>
 
-        <div class='content'>
-            <% if request.fullpath[0..6] == '/posts/' && request.fullpath[-5..-1] == '/edit' %>
-                <%= render 'post_form'%>
-            <% else %>
+        <% if  is_edit %>
+            <%= render 'post_form'%>
+        <% end %>
+        
+        <% unless is_edit %>
+            <div class='content'>
                 <%= post.content %>
-            <% end %>
-        </div>
-        
-        <div class='stats d-flex justify-content-end text-secondary'>
-            <p class='likes-count'> <%= pluralize(post.likes.count, 'Like')%> </p>
-            <p class='likes-count ml-2'> <%= pluralize(post.comments.count, 'Comment')%> </p>
-        </div>
+            </div>
 
-        <div class="dropdown-divider m-0"></div>
-        
-        <div class='like-comment row '>
-            <a class="btn col" data-toggle="collapse" href="#viewComments<%= post.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <%= fa_icon "thumbs-up", class: "mr-2" %> Like
-            </a>
-            <a class="btn col " data-toggle="collapse" href="#Comments-area<%= post.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <%= fa_icon "comment", class: "mr-2" %> Comment
-            </a>
-        </div>
-        <div class="comment-area collapse <%= 'show' if request.fullpath[0..6] == '/posts/' %>" id="Comments-area<%= post.id%>">
-            <div class="dropdown-divider mt-0"></div>
+            <div class='stats d-flex justify-content-end text-secondary'>
+                <p class='likes-count'> <%= pluralize(post.likes.count, 'Like')%> </p>
+                <p class='likes-count ml-2'> <%= pluralize(post.comments.count, 'Comment')%> </p>
+            </div>
 
-            <%= render partial: "comment_form", locals: {post: post} %>
-            <small class="text-muted"><%= render post.comments %></small>
-        </div>
+            <div class="dropdown-divider m-0"></div>
+
+            <div class='like-comment row '>
+                <a class="btn col" data-toggle="collapse" href="#viewComments<%= post.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <%= fa_icon "thumbs-up", class: "mr-2" %> Like
+                </a>
+                <a class="btn col " data-toggle="collapse" href="#Comments-area<%= post.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <%= fa_icon "comment", class: "mr-2" %> Comment
+                </a>
+            </div>
+            <div class="comment-area collapse <%= 'show' if request.fullpath[0..6] == '/posts/' %>" id="Comments-area<%= post.id%>">
+                <div class="dropdown-divider mt-0"></div>
+
+                <%= render partial: "comments/comment_form", locals: {post: post} %>
+                <small class="text-muted"><%= render post.comments %></small>
+            </div>
+        <% end %>
     </div>
 <% end %>

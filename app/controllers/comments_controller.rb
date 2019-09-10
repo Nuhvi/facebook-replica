@@ -12,7 +12,9 @@ class CommentsController < ApplicationController
     redirect_to root_url
   end
 
-  def edit; end
+  def edit
+    post = @comment.post
+  end
 
   def update; end
 

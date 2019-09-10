@@ -23,6 +23,39 @@ a {
     }
 }
 
+.d-flex {
+    flex-direction: row;
+}
+
+@mixin edit-delete-dropdown() {
+    .dropdown {
+        button {
+            display: flex;
+            align-content: center;
+            color: gray;
+
+            &:hover {
+                color: black;
+            }
+        }
+
+        .dropdown-menu {
+            min-width: 0;
+            left: -100%;
+
+            .btn {
+                width: 100%;
+                border-radius: 0;
+
+                &:hover {
+                    background-color: rgb(241, 241, 241);
+                }
+            }
+        }
+
+    }
+}
+
 
 // Elements
 
@@ -105,32 +138,7 @@ a {
             margin: 0;
         }
 
-        .dropdown {
-            button {
-                display: flex;
-                align-content: center;
-                color: gray;
-
-                &:hover {
-                    color: black;
-                }
-            }
-
-            .dropdown-menu {
-                min-width: 0;
-                left: -100%;
-
-                .btn {
-                    width: 100%;
-                    border-radius: 0;
-
-                    &:hover {
-                        background-color: rgb(241, 241, 241);
-                    }
-                }
-            }
-
-        }
+        @include edit-delete-dropdown();
     }
 
     .content {
@@ -148,22 +156,13 @@ a {
     .like-comment {
         a {
             color: gray;
-            
+
             &:hover {
                 color: black;
             }
         }
     }
 
-    .comment {
-        .avatar {
-            display: block;
-            width: 2rem;
-            padding: 0;
-            height: 2rem;
-        }
-    }
-    
     .new_comment {
         display: flex;
 
@@ -189,5 +188,27 @@ a {
 
     input {
         float: right;
+    }
+}
+
+// Comments
+
+.comment {
+    @include edit-delete-dropdown();
+
+    .avatar {
+        display: block;
+        width: 2rem;
+        padding: 0;
+        height: 2rem;
+    }
+
+    .edit_comment {
+        margin: .5rem 0;
+        width: 100%;
+
+        .btn {
+            display: none;
+        }
     }
 }
