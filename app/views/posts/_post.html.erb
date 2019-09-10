@@ -4,7 +4,7 @@
             <div class="avatar-name">
                 <%= avatar_for current_user %>
                 <div class="name-time">
-                     <%= name_for(post.user)%>
+                    <%= name_for(post.user)%>
                     <%= link_to(post) do%>
                         <p class="post_time"> Published <%= time_ago_in_words(post.created_at) %> ago </p>
                     <% end %>
@@ -27,14 +27,27 @@
         <div class='content'>
             <%= post.content %>
         </div>
+        
+        <div class='stats d-flex justify-content-end text-secondary'>
+            <p class='likes-count'> <%= pluralize(post.likes.count, 'Like')%> </p>
+            <p class='likes-count ml-2'> <%= pluralize(post.comments.count, 'Comment')%> </p>
+        </div>
 
-        <% if signed_in? %>
-                <%= form_for current_user.comments.new do |f| %>
-                    <%= render 'devise/shared/error_messages', resource: f.object %>
-                    <%= f.hidden_field :post_id, value: post.id %>
-                    <%= f.text_field :content, placeholder: "Write a comment...", class: 'form-control', required: true, autocomplete: 'off' %>
-                    <%= f.submit "Comment", class: "btn btn-primary" %>
-                <% end %>
-        <% end %>
+        <div class="dropdown-divider m-0"></div>
+        
+        <div class='like-comment row'>
+            <a class="btn col" data-toggle="collapse" href="#viewComments<%= post.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Like
+            </a>
+            <a class="btn col" data-toggle="collapse" href="#Comments-area<%= post.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Comment
+            </a>
+        </div>
+        <div class="comment-area collapse <%= 'show' if request.fullpath[0..6] == '/posts/' %>" id="Comments-area<%= post.id%>">
+            <div class="dropdown-divider mt-0"></div>
+
+            <%= render partial: "comment_form", locals: {post: post} %>
+            <small class="text-muted"><%= render post.comments %></small>
+        </div>
     </div>
 <% end %>
