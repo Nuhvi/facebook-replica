@@ -12,9 +12,13 @@
             </div>
 
             <% if post.user == current_user %>
-                <div class="menu">
-                    <%= link_to "Edit", edit_post_path(post) %>
-                    <%= button_to "Delete", post, :method => :delete %>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <%= link_to "Edit", edit_post_path(post) %>
+                        <%= button_to "Delete", post, :method => :delete %>
+                    </div>
                 </div>
             <% end %>
         </div>
