@@ -30,6 +30,12 @@ header {
         &.top {
             justify-content: left;
 
+            .avatar {
+                width: 2rem;
+                padding: 0;
+                height: 2rem;
+            }
+
             h1 {
                 font-size: 2rem;
                 font-weight: bold;
