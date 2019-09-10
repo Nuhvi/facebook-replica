@@ -204,6 +204,22 @@ RSpec.describe PostsController, type: :controller do
         end.to change(user.posts, :count).by(-1)
       end
 
+      it 'deletes all comments' do
+        FactoryBot.create(:comment, post: @post, user: @post.user)
+
+        expect do
+          delete :destroy, params: { id: @post.id }
+        end.to change(@post.comments, :count).by(-1)
+      end
+
+      it 'deletes all Likes' do
+        FactoryBot.create(:like, likeable: @post, user: @post.user)
+
+        expect do
+          delete :destroy, params: { id: @post.id }
+        end.to change(@post.likes, :count).by(-1)
+      end
+
       it 'redirects to the root url' do
         delete :destroy, params: { id: @post.id }
         expect(response).to redirect_to root_url

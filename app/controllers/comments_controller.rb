@@ -3,6 +3,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_comment, only: %i[edit update destroy]
+  before_action :comment_owner?, only: %i[edit update destroy]
 
   def create
     @comment = current_user.comments.build(comment_params)
@@ -16,14 +17,25 @@ class CommentsController < ApplicationController
     post = @comment.post
   end
 
-  def update; end
+  def update
+    if @comment.update(comment_params)
+      flash[:notice] = 'Comment was successfully updated.'
+      redirect_to @comment.post
+    else
+      render :edit
+    end
+  end
 
   def destroy
-    @post.destroy
+    @comment.destroy
     redirect_to root_url
   end
 
   private
+
+  def comment_owner?
+    redirect_to root_url unless @comment.user == current_user
+  end
 
   def set_comment
     @comment = Comment.find(params[:id])
