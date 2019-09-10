@@ -13,11 +13,12 @@
 
             <% if post.user == current_user %>
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <%= fa_icon "ellipsis-h" %>
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <%= link_to "Edit", edit_post_path(post) %>
-                        <%= button_to "Delete", post, :method => :delete %>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <%= link_to "Edit", edit_post_path(post), class: 'btn ' %>
+                        <%= button_to "Delete", post, :method => :delete, class: 'btn ' %>
                     </div>
                 </div>
             <% end %>

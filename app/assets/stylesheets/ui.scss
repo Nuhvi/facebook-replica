@@ -17,6 +17,12 @@ a {
     }
 }
 
+.btn {
+    &:focus {
+        box-shadow: none;
+    }
+}
+
 
 // Elements
 
@@ -40,6 +46,7 @@ a {
 .username {
     font-weight: bold;
     margin: 0;
+    color: black;
 }
 
 .avatar-name {
@@ -96,8 +103,26 @@ a {
             font-size: 10px;
             color: gray;
             margin: 0;
-        }   
+        }
 
+        .dropdown {
+            button {
+                display: flex;
+                align-content: center;
+                color: gray;
+
+                &:hover {
+                    color: black;
+                }
+            }
+
+            .dropdown-menu {
+                min-width: 0;
+                padding: .5rem;
+                left: -100%;
+            }
+
+        }
     }
 
     .content {
@@ -118,6 +143,7 @@ a {
             display: none;
         }
     }
+
 }
 
 // User card

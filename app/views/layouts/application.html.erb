@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -13,7 +14,7 @@
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash' %>
     <main>
-      <div class="timeline_container">
+      <div class="timeline_container px-sm-5">
         <%= yield %>
       </div>
 
