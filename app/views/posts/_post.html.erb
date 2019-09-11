@@ -10,7 +10,7 @@
           <% end %>
         </div>
       </div>
-      <% if post.user == current_user && !is_edit %>
+      <% if post.user == current_user && !edit_path? %>
         <div class="dropdown">
           <button class="btn " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= fa_icon "ellipsis-h" %>
@@ -22,10 +22,10 @@
         </div>
       <% end %>
     </div>
-    <% if  is_edit %>
+    <% if  edit_path? %>
       <%= render 'post_form'%>
     <% end %>
-    <% unless is_edit %>
+    <% unless edit_path? %>
       <div class='content'>
         <%= post.content %>
       </div>
@@ -46,7 +46,7 @@
           <%= fa_icon "comment", class: "mr-2" %> Comment
         </a>
       </div>
-      <div class="comment-area collapse <%= 'show' if is_show %>" id="Comments-area<%= post.id%>">
+      <div class="comment-area collapse <%= 'show' if show_path? %>" id="Comments-area<%= post.id%>">
         <div class="dropdown-divider mt-0"></div>
         <%= render partial: "comments/comment_form", locals: {post: post} %>
         <small class="text-muted"><%= render post.comments %></small>

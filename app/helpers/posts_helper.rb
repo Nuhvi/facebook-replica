@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module PostsHelper
-  def is_show
-    request.fullpath.match(/posts\/\d+/)
+  def show_path?
+    request.fullpath.match(%r{posts/\d+})
   end
 end

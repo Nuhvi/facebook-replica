@@ -9,6 +9,8 @@ $border-color: #e6e4ea;
         0px 1px 1px 0px rgba(0, 0, 0, 0.14),
         0px 1px 3px 0px rgba(0, 0, 0, .12);
     border: none;
+
+    padding: .5rem 1rem;
 }
 
 a {
@@ -125,8 +127,6 @@ a {
 // post element
 .post {
     width: 100%;
-    padding: .5rem 1rem;
-
     .header {
         display: flex;
         justify-content: space-between;
@@ -184,7 +184,6 @@ a {
 .user {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: .5rem;
 
     input {
         float: right;

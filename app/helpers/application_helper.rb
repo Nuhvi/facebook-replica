@@ -14,7 +14,7 @@ module ApplicationHelper
     end
   end
 
-  def is_edit
-    request.fullpath.match(/\d+\/edit/)
+  def edit_path?
+    request.fullpath.match(%r{\d+/edit})
   end
 end

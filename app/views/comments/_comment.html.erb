@@ -1,10 +1,10 @@
-<div class='comment p-2 d-flex <%= 'card' if is_edit%>'>
+<div class='comment p-2 d-flex <%= 'card' if edit_path?%>'>
   <div class='d-flex col-11 p-0'>
     <%= avatar_for(comment.user) %>
     <div class='ml-2 col p-0'>
       <%= name_for(comment.user)%>
       <small class="post_time ml-1"><%= time_ago_in_words(comment.created_at) %> ago </small>
-      <% if is_edit%>
+      <% if edit_path?%>
         <%= form_for comment do |f| %>
           <%= render 'devise/shared/error_messages', resource: f.object %>
           <%= f.hidden_field :post_id, value: comment.post.id %>
@@ -16,7 +16,7 @@
       <% end %>
     </div>
   </div>
-  <% if comment.user == current_user && !is_edit %>
+  <% if comment.user == current_user && !edit_path? %>
     <div class="dropdown ">
       <button class="btn " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= fa_icon "ellipsis-h" %>

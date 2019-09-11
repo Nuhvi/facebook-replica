@@ -13,8 +13,7 @@ class CommentsController < ApplicationController
     redirect_to root_url
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @comment.update(comment_params)
