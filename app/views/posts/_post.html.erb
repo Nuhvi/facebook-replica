@@ -43,9 +43,9 @@
             <div class="dropdown-divider m-0"></div>
 
             <div class='like-comment row '>
-                <a class="btn col" data-toggle="collapse" href="#viewComments<%= post.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <%= link_to likes_path(likeable_data(post)), class: 'btn col', :method => :post do%>
                     <%= fa_icon "thumbs-up", class: "mr-2" %> Like
-                </a>
+                <% end %>
                 <a class="btn col " data-toggle="collapse" href="#Comments-area<%= post.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
                     <%= fa_icon "comment", class: "mr-2" %> Comment
                 </a>
