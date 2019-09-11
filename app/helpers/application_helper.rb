@@ -13,4 +13,8 @@ module ApplicationHelper
       'danger'
     end
   end
+
+  def is_edit
+    request.fullpath.match(/\d+\/edit/)
+  end
 end

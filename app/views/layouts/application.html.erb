@@ -4,12 +4,10 @@
     <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <%= render 'layouts/header' %>
     <%= render 'layouts/flash' %>
@@ -17,8 +15,7 @@
       <div class="timeline_container px-sm-5">
         <%= yield %>
       </div>
-
-    <%= debug(params) if Rails.env.development? %>
+      <%= debug(params) if Rails.env.development? %>
     </main>
   </body>
 </html>

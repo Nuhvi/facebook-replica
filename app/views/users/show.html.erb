@@ -1,10 +1,9 @@
 <% provide(:title, 'Profile') %>
-
 <div class= "card mb-2 px-3 py-3">
-   <div class='col-2'>
-      <%= avatar_for(@user)%>
-   </div>
-   <strong>Bio:</strong> 
-   <%= @user.bio%>
+  <div class='col-2'>
+    <%= avatar_for(@user)%>
+  </div>
+  <strong>Bio:</strong>
+  <%= @user.bio%>
 </div>
 <%= render @posts %>
