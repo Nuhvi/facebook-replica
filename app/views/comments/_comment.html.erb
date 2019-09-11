@@ -13,6 +13,15 @@
         <% end %>
       <% else %>
         <p class="m-0"> <%= comment.content%> </p>
+        <% if liked?(comment) %>
+          <%= link_to like_path(like_id(comment)), class: 'liked', method: :delete do%>
+            UnLike
+          <% end %>
+        <% else %>
+          <%= link_to likes_path(likeable_data(comment)), class: '', method: :post do%>
+            Like
+          <% end %>
+        <% end %>
       <% end %>
     </div>
   </div>

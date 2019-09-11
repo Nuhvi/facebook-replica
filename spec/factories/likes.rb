@@ -4,5 +4,13 @@ FactoryBot.define do
   factory :like do
     user { FactoryBot.build(:user) }
     likeable { FactoryBot.build(%i[post comment].sample) }
+
+    trait :for_post do
+      likeable { FactoryBot.build(:post) }
+    end
+
+    trait :for_comment do
+      likeable { FactoryBot.build(:comment) }
+    end
   end
 end

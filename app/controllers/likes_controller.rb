@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
-  before_action :set_likeable
+  before_action :authenticate_user!
+  before_action :set_likeable, only: %i[index create]
 
   def index; end
 
@@ -13,7 +14,14 @@ class LikesController < ApplicationController
     redirect_to root_url
   end
 
-  def destroy; end
+  def destroy
+    @like = Like.find(params[:id])
+    return unless @like.user == current_user
+
+    @like.destroy
+    flash[:notice] = 'Like was successfully deleted.'
+    redirect_to root_url
+  end
 
   private
 

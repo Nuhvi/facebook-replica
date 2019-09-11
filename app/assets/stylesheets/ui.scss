@@ -127,6 +127,7 @@ a {
 // post element
 .post {
     width: 100%;
+
     .header {
         display: flex;
         justify-content: space-between;
@@ -151,6 +152,14 @@ a {
         p {
             margin-bottom: .5rem;
         }
+
+        a {
+            color: gray;
+
+            &:hover {
+                color: black;
+            }
+        }
     }
 
     .like-comment {
@@ -159,6 +168,16 @@ a {
 
             &:hover {
                 color: black;
+            }
+
+
+            &.liked {
+                color: black;
+                font-weight: bold;
+
+                &:hover {
+                    color: gray;
+                }
             }
         }
     }
@@ -210,4 +229,22 @@ a {
             display: none;
         }
     }
+
+    a {
+        color: gray;
+
+        &:hover {
+            color: black;
+        }
+
+        &.liked {
+            color: black;
+            font-weight: bold;
+
+            &:hover {
+                color: gray;
+            }
+        }
+    }
+
 }
