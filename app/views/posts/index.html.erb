@@ -1,8 +1,6 @@
-<%= link_to user_path(current_user), class: 'user' do  %>
-   <%= gravatar_for current_user %>
-   <p> <%= current_user.first_name + " " + current_user.last_name %> </p>
-<% end %>
-
-<%= render 'post_form'%>
-
+<% provide(:title, 'Home') %>
+<div class= "new-post card mb-5">
+  <%= avatar_for current_user %>
+  <%= render 'post_form'%>
+</div>
 <%= render @posts %>

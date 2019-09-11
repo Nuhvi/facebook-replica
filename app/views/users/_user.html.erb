@@ -1,3 +1,9 @@
-<%= gravatar_for user %><br/>
-<%= user.first_name %>
-<%= button_to 'Send friend request', nil%>
+<div class="user card">
+  <div class="avatar-name">
+    <%= avatar_for user %>
+    <div class="name-time">
+      <%= name_for(user)%>
+    </div>
+  </div>
+  <%= button_to 'Send friend request', nil, class: 'btn btn-primary'%>
+</div>

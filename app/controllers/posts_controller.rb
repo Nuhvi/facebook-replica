@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   def index
     @post = Post.new
     @posts = Post.all
+    @comment = current_user.comments.build
   end
 
   def show; end
@@ -30,7 +31,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      flash[:notice] = 'Post was successfully created.'
+      flash[:notice] = 'Post was successfully updated.'
       redirect_to @post
     else
       render :edit
@@ -39,6 +40,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
+    flash[:notice] = 'Post was successfully deleted.'
     redirect_to root_url
   end
 

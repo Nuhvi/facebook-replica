@@ -5,16 +5,22 @@
 Herouku link // later
   
 ## Features
-  - **User**
+  - **Users**
     - Sign-up / login / logout
     - Show profile page
     - Create / update / delete posts
     - Has many posts
 
-  - **Post**
+  - **Posts**
     - Create / update / delete
     - Show in chronological update order
     - Belongs to a User
+
+  - **Comments**
+    - Create / update / delete
+
+  - **Likes**
+    - Like / unlike comments and/or posts
 
 ## Local Installation
 
