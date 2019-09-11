@@ -8,9 +8,9 @@ module ApplicationHelper
 
   def alert_type(message_type)
     if message_type == 'notice'
-      return 'success'
-    elsif message_type == 'alert' 
-      return 'danger'
+      'success'
+    elsif message_type == 'alert'
+      'danger'
     end
   end
 end

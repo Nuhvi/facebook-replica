@@ -14,7 +14,6 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    post = @comment.post
   end
 
   def update
@@ -28,6 +27,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    flash[:notice] = 'Comment was successfully deleted.'
     redirect_to root_url
   end
 
