@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe CommentsController, type: :controller do
   let(:user) { FactoryBot.create(:user) }
   let(:other_user) { FactoryBot.create(:user) }
-  before { @comment = user.comments.create(FactoryBot.attributes_for(:comment)) }
+  before { @comment = FactoryBot.create(:comment, user: user) }
 
   describe '#create' do
     context 'as an authenticated user' do

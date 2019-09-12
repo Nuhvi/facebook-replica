@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :post do
-    content { 'MyString' }
-    user { FactoryBot.build(:user) }
+    content { Faker::Lorem.paragraph }
+    association :user
 
     trait :invalid do
       content { '' }
