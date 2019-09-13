@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Friendship, type: :model do
@@ -30,5 +32,11 @@ RSpec.describe Friendship, type: :model do
   end
 
   describe 'methods' do
+    describe '#find_for_both(user1_id, user2_id)' do
+      it 'returns any friendship with both users in any combintaion' do
+        friendship = FactoryBot.create(:friendship, user: user, friend: friend)
+        expect(Friendship.find_for_both(user.id, friend.id)).to eq(friendship)
+      end
+    end
   end
 end

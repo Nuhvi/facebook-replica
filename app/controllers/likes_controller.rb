@@ -11,7 +11,7 @@ class LikesController < ApplicationController
 
     @likeable.likes.create(user: current_user)
     flash[:notice] = "#{like_params[:likeable_type]} was successfully Liked."
-    redirect_back(fallback_location: root_path)    
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -20,7 +20,7 @@ class LikesController < ApplicationController
 
     @like.destroy
     flash[:notice] = 'Like was successfully deleted.'
-    redirect_back(fallback_location: root_path)    
+    redirect_back(fallback_location: root_path)
   end
 
   private
