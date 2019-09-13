@@ -1,9 +1,15 @@
-<div class="user card">
-  <div class="avatar-name">
-    <%= avatar_for user %>
-    <div class="name-time">
-      <%= name_for(user)%>
+<% unless current_user.friend?(user) %>
+  <div class="user card">
+    <div class="avatar-name">
+      <%= avatar_for user %>
+      <div class="name-time">
+        <%= name_for(user)%>
+      </div>
     </div>
+    <% if current_user.pending_friends.include?(user) %>
+      <%= button_to 'Delete friend request', user_unfriend_path(user), class: 'btn btn-primary'%>
+    <% else %>
+      <%= button_to 'Send friend request', user_friend_path(user), class: 'btn btn-primary'%>
+    <% end %>
   </div>
-  <%= button_to 'Send friend request', nil, class: 'btn btn-primary'%>
-</div>
+<%end%>

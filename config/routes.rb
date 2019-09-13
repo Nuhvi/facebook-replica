@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'friendships/index'
   devise_for :users
 
   authenticated :user do
@@ -9,7 +10,12 @@ Rails.application.routes.draw do
     root 'devise/sessions#new'
   end
 
-  resources :users, only: [:show, :index]
+  resources :users, only: [:show, :index] do
+    get 'friends', to: 'friendships#index'
+    post 'friend', to: 'friendships#create'
+    delete 'unfriend', to: 'friendships#destroy'
+  end
+  
   resources :posts 
   resources :comments
   resources :likes, only: [:index, :create, :destroy]

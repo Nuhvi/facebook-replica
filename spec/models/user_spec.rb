@@ -24,5 +24,18 @@ RSpec.describe User, type: :model do
   end
 
   describe 'methods' do
+    describe '#friends' do
+      let (:user) { FactoryBot.create(:user) }
+      let (:friend1) { FactoryBot.create(:friend) }
+      let (:friend2) { FactoryBot.create(:friend) }
+
+      before do
+        user.friendships.create(friend: friend1, confirmed: true)
+        friend2.friendships.create(friend: user, confirmed: true)
+      end
+      it 'return an array of freiends from all confirmed friendships' do
+        expect(user.friends).to match_array([friend2, friend1])
+      end
+    end
   end
 end
