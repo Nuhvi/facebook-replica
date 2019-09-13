@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:notice] = 'Post was successfully created.'
-      redirect_to @post
+      redirect_back(fallback_location: root_path)
     else
       render :new
     end
