@@ -14,4 +14,4 @@ FactoryBot.create(:user, email: "example@mail.com", password: 'foobar')
 # likes
 5.times.each { |i| FactoryBot.create(:like) }
 
-User.all.each { |user| user.friendships.create(friend_id: User.first.id) }
+User.all[1..-1].each { |user| user.friendships.create(friend_id: User.first.id) }
