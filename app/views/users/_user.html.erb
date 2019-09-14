@@ -1,18 +1,20 @@
-<div class="user card">
-  <div class="avatar-name">
-    <%= avatar_for user %>
-    <div class="name-time">
-      <%= name_for(user)%>
+
+  <div class="user card">
+    <div class="avatar-name">
+      <%= avatar_for user %>
+      <div class="name-time">
+        <%= name_for(user)%>
+      </div>
     </div>
+    <% if current_user.pending_friends.include?(user) %>
+      <%= button_to 'Cancel friend request', user_unfriend_path(user, format: :cancel_request ), method: :delete, class: 'btn btn-danger'%>
+    <% elsif current_user.friend_requests.include?(user) %>
+      <div class="d-flex justify-content-end">
+        <%= button_to 'Accept', user_accept_path(user), class: 'btn btn-primary mr-2'%>
+        <%= button_to 'Reject', user_unfriend_path(user, format: :reject_request ), method: :delete, class: 'btn btn-danger'%>
+      </div>
+    <% else %>
+      <%= button_to 'Send friend request', user_friend_path(user), class: 'btn btn-primary'%>
+    <% end %>
   </div>
-  <% if current_user.pending_friends.include?(user) %>
-    <%= button_to 'Cancel friend request', user_unfriend_path(user, format: :cancel_request ), method: :delete, class: 'btn btn-danger'%>
-  <% elsif current_user.friend_requests.include?(user) %>
-    <div class="d-flex justify-content-end">
-      <%= button_to 'Accept', user_accept_path(user), class: 'btn btn-primary mr-2'%>
-      <%= button_to 'Reject', user_unfriend_path(user, format: :reject_request ), method: :delete, class: 'btn btn-danger'%>
-    </div>
-  <% else %>
-    <%= button_to 'Send friend request', user_friend_path(user), class: 'btn btn-primary'%>
-  <% end %>
-</div>
+

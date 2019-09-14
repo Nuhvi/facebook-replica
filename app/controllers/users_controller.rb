@@ -10,5 +10,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @users -= [current_user]
+    @users -= current_user.friends
   end
 end

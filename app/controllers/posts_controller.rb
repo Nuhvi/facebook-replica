@@ -7,7 +7,8 @@ class PostsController < ApplicationController
 
   def index
     @post = Post.new
-    @posts = Post.all
+    feed_users = current_user.friends << current_user
+    @posts =  Post.where(user: feed_users)
     @comment = current_user.comments.build
   end
 

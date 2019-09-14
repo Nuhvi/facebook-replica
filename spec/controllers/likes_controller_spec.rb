@@ -17,6 +17,7 @@ RSpec.describe LikesController, type: :controller do
       it 'responds successfully' do
         get :index, params: { like: { likeable_id: like.likeable_id, likeable_type: like.likeable_type } }
         expect(response).to be_successful
+        expect(assigns(:likeable)).to eq(likeable)
       end
     end
 

@@ -1,17 +1,20 @@
 require 'factory_bot_rails'
 
-FactoryBot.create(:user, email: "example@mail.com", password: 'foobar')
+FactoryBot.create(:user, email: "example@mail.com", password: 'foobar', first_name: 'demo', last_name: 'user')
 
 # users
-5.times.each { |i| FactoryBot.create(:user) }
+9.times.each { |i| FactoryBot.create(:user) }
 
 # posts
-5.times.each { |i| FactoryBot.create(:post) }
+20.times.each { |i| FactoryBot.create(:post, user: User.all.sample) }
 
 # comments
-5.times.each { |i| FactoryBot.create(:comment) }
+50.times.each { |i| FactoryBot.create(:comment, post: Post.all.sample, user: User.all.sample) }
 
 # likes
-5.times.each { |i| FactoryBot.create(:like) }
+60.times.each { |i| FactoryBot.create(:like, likeable: (Post.all + Comment.all).sample ,user: User.all.sample) }
 
-User.all[1..-1].each { |user| user.friendships.create(friend_id: User.first.id) }
+# friendships
+User.all[1..3].each { |user| user.friendships.create(friend: User.first) }
+User.all[4..6].each { |user| user.friendships.create(friend: User.first, confirmed: true) }
+User.all[7..9].each { |friend| User.first.friendships.create(friend: friend) }
