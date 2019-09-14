@@ -1,2 +1,9 @@
-<h1>Friendships#index</h1>
-<p>Find me in app/views/friendships/index.html.erb</p>
+<% provide(:title, @title) %>
+<div class='mb-5 d-flex justify-content-between'>
+  <%= link_to 'Friend requests', user_friends_path(current_user, format: :requests_recieved), class: "btn btn-primary " %>
+  <%= link_to 'Friends', user_friends_path(current_user), class: "btn btn-primary " %>
+  <%= link_to 'Pending requests', user_friends_path(current_user, format: :requests_sent), class: "btn btn-primary " %>
+</div>
+<% if @friends%>
+  <%= render @friends%>
+<% end %>

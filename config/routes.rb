@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :index] do
     get 'friends', to: 'friendships#index'
     post 'friend', to: 'friendships#create'
+    post 'accept', to: 'friendships#update'
     delete 'unfriend', to: 'friendships#destroy'
   end
   

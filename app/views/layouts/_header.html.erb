@@ -9,7 +9,7 @@
         <nav>
           <%= link_to 'Home', root_url, :class => 'navbar-link' %>
           <%= link_to 'Find Friends', users_path, :class => 'navbar-link' %>
-          <%= link_to 'Friend requests', root_url, :class => 'navbar-link' %>
+          <%= link_to 'Friend requests', user_friends_path(current_user, format: :requests_recieved), :class => 'navbar-link' %>
           <%= link_to 'Notifications', root_url, :class => 'navbar-link' %>
           <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
         </nav>

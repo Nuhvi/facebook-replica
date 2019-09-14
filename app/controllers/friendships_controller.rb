@@ -5,12 +5,27 @@ class FriendshipsController < ApplicationController
   before_action :set_user
 
   # all friends
-  def index; end
+  def index
+    case params[:format]
+    when 'requests_recieved' then @friends = @user.friend_requests
+                                  @title = 'Recieved requests'
+    when 'requests_sent' then @friends = @user.pending_friends
+                              @title = 'Sent requests'
+    else @friends = @user.friends
+         @title = 'Friends'
+    end
+  end
 
   # create request
   def create
     friend_request = current_user.friendships.build(friend_id: params[:user_id])
     flash[:notice] = "Friend request submitted to #{@user.first_name}" if friend_request.save
+    redirect_back(fallback_location: root_path)
+  end
+
+  # accept requests
+  def update
+    current_user.confirm_friend(@user)
     redirect_back(fallback_location: root_path)
   end
 
