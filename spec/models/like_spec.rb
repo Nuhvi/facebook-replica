@@ -8,8 +8,8 @@ RSpec.describe Like, type: :model do
   end
 
   describe 'associations' do
-    it { should belong_to(:user) }
-    it { should belong_to(:likeable) }
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:likeable) }
   end
 
   describe 'methods' do

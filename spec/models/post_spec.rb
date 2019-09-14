@@ -8,13 +8,13 @@ RSpec.describe Post, type: :model do
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:content) }
+    it { is_expected.to validate_presence_of(:content) }
   end
 
   describe 'associations' do
-    it { should belong_to(:user) }
-    it { should have_many(:comments) }
-    it { should have_many(:likes) }
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:comments) }
+    it { is_expected.to have_many(:likes) }
   end
 
   describe 'default scope' do
@@ -24,7 +24,7 @@ RSpec.describe Post, type: :model do
     before { post_two.update(content: 'updated') }
 
     it 'orders posts in update chronological order' do
-      Post.all.should eq [post_two, post_three, post_one]
+      expect(Post.all).to eq [post_two, post_three, post_one]
     end
   end
 

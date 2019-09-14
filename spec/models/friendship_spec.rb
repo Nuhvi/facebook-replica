@@ -11,8 +11,8 @@ RSpec.describe Friendship, type: :model do
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:user) }
-    it { should validate_presence_of(:friend) }
+    it { is_expected.to validate_presence_of(:user) }
+    it { is_expected.to validate_presence_of(:friend) }
     it 'validate that users are not trying to friend themselves' do
       friendship = FactoryBot.build(:friendship, user: user, friend: user)
       expect(friendship).to be_invalid
@@ -27,8 +27,8 @@ RSpec.describe Friendship, type: :model do
   end
 
   describe 'associations' do
-    it { should belong_to(:user) }
-    it { should belong_to(:friend) }
+    it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:friend) }
   end
 
   describe 'methods' do
