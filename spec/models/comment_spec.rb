@@ -37,9 +37,9 @@ RSpec.describe Comment, type: :model do
         it 'will create a notification after creating a comment' do
           user = FactoryBot.create(:user)
           post = FactoryBot.create(:post)
-          expect {
+          expect do
             post.comments.create(content: 'content', user: user)
-          }.to change(post.user.notifications, :count).by(1)
+          end.to change(post.user.notifications, :count).by(1)
         end
       end
     end

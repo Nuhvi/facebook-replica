@@ -4,6 +4,4 @@
   <%= link_to 'Friends', user_friends_path(current_user), class: "btn btn-primary " %>
   <%= link_to 'Pending requests', user_friends_path(current_user, format: :requests_sent), class: "btn btn-primary " %>
 </div>
-
-  <%= render @friends%>
-
+<%= render @friends%>

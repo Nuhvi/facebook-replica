@@ -14,7 +14,6 @@ RSpec.describe Like, type: :model do
   end
 
   describe 'methods' do
-
   end
 
   describe 'callbacks' do

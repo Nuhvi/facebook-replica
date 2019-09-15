@@ -42,8 +42,8 @@ RSpec.describe Friendship, type: :model do
   end
 
   describe 'callbacks' do
-    let(:user) {FactoryBot.create(:user)}
-    let(:friend) {FactoryBot.create(:friend)}
+    let(:user) { FactoryBot.create(:user) }
+    let(:friend) { FactoryBot.create(:friend) }
     context 'after creation' do
       describe '#create_notification' do
         it 'will create a notification after creating a friend request' do
