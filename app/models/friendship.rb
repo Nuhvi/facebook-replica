@@ -8,6 +8,7 @@ class Friendship < ApplicationRecord
 
   belongs_to :user
   belongs_to :friend, class_name: 'User'
+  has_many :notifications, as: :notifiable, dependent: :destroy
 
   class << self
     def find_for_both(user1_id, user2_id)

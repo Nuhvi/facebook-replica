@@ -15,16 +15,16 @@ RSpec.describe Post, type: :model do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to have_many(:comments) }
     it { is_expected.to have_many(:likes) }
+    it { is_expected.to have_many(:notifications) }
   end
 
   describe 'default scope' do
     let!(:post_one) { FactoryBot.create(:post) }
     let!(:post_two) { FactoryBot.create(:post) }
     let!(:post_three) { FactoryBot.create(:post) }
-    before { post_two.update(content: 'updated') }
 
     it 'orders posts in update chronological order' do
-      expect(Post.all).to eq [post_two, post_three, post_one]
+      expect(Post.all).to eq [post_three, post_two, post_one]
     end
   end
 

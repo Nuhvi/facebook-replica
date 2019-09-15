@@ -13,7 +13,7 @@ RSpec.describe PostsController, type: :controller do
       it 'responds successfully' do
         get :index, params: { user_id: user.id }
         expect(response).to be_successful
-        expect(assigns(:posts)).to eq(Post.where(user: (user.friends + [user]) ))
+        expect(assigns(:posts)).to eq(Post.where(user: (user.friends + [user])))
       end
     end
 
@@ -161,7 +161,7 @@ RSpec.describe PostsController, type: :controller do
       context 'with valid attributes' do
         it 'udpates the post' do
           patch :update, params: { id: @post.id, post: { content: new_content } }
-          expect(assigns(:post)).to eq(@post)          
+          expect(assigns(:post)).to eq(@post)
           expect(@post.reload.content).to eq(new_content)
         end
       end
