@@ -30,4 +30,18 @@ RSpec.describe Comment, type: :model do
 
   describe 'methods' do
   end
+
+  describe 'callbacks' do
+    context 'after creation' do
+      describe '#create_notification' do
+        it 'will create a notification after creating a comment' do
+          user = FactoryBot.create(:user)
+          post = FactoryBot.create(:post)
+          expect {
+            post.comments.create(content: 'content', user: user)
+          }.to change(post.user.notifications, :count).by(1)
+        end
+      end
+    end
+  end
 end

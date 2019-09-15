@@ -18,9 +18,9 @@ RSpec.describe Notification, type: :model do
   end
 
   describe 'default scope' do
-    let!(:notification_one) { FactoryBot.create(:notification) }
-    let!(:notification_two) { FactoryBot.create(:notification) }
-    let!(:notification_three) { FactoryBot.create(:notification) }
+    let!(:notification_one) { FactoryBot.create(:notification, :for_post) }
+    let!(:notification_two) { FactoryBot.create(:notification, :for_post) }
+    let!(:notification_three) { FactoryBot.create(:notification, :for_post) }
 
     it 'orders notifications in update chronological order' do
       expect(Notification.all).to eq [notification_three, notification_two, notification_one]

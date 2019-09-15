@@ -123,7 +123,7 @@ RSpec.describe FriendshipsController, type: :controller do
 
       it 'confirms the friendship' do
         post :update, params: { user_id: friend.id }
-        expect(Friendship.last.confirmed).to be true
+        expect(user.friend?(friend)).to be true
       end
     end
 
@@ -132,14 +132,14 @@ RSpec.describe FriendshipsController, type: :controller do
 
       it 'doesnt udpate the post' do
         post :update, params: { user_id: friend.id }
-        expect(Friendship.last.confirmed).to be false
+        expect(user.friend?(friend)).to be false
       end
     end
 
     context 'as a guest' do
       before { post :update, params: { user_id: friend.id } }
       it 'doesnt confirm friendship' do
-        expect(Friendship.last.confirmed).to be false
+        expect(user.friend?(friend)).to be false
       end
 
       it 'redirects to the sign-in page' do

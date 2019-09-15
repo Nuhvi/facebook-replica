@@ -9,4 +9,10 @@ class Comment < ApplicationRecord
   has_many :notifications, as: :notifiable, dependent: :destroy
 
   default_scope { order(created_at: :desc) }
+
+  after_create :create_notification
+
+  def create_notification
+    notifications.create(user: post.user)
+  end
 end
