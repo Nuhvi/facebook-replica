@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'notifications/index'
   get 'friendships/index'
   devise_for :users
 
@@ -20,4 +21,5 @@ Rails.application.routes.draw do
   resources :posts 
   resources :comments
   resources :likes, only: [:index, :create, :destroy]
+  resources :notifications, only: [:index]
 end

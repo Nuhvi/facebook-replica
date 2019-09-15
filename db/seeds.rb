@@ -3,7 +3,7 @@ require 'factory_bot_rails'
 FactoryBot.create(:user, email: "example@mail.com", password: 'foobar', first_name: 'demo', last_name: 'user')
 
 # users
-9.times.each { |i| FactoryBot.create(:user) }
+11.times.each { |i| FactoryBot.create(:user) }
 
 # posts
 20.times.each { |i| FactoryBot.create(:post, user: User.all.sample) }

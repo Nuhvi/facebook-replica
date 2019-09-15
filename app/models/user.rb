@@ -32,6 +32,10 @@ class User < ApplicationRecord
     inverse_friendships.map { |friendship| friendship.user unless friendship.confirmed }.compact
   end
 
+  def strangers
+    User.all - [self] - friends - pending_friends - friend_requests
+  end
+
   def confirm_friend(user)
     friendship = inverse_friendships.find_by(user_id: user.id)
     return unless friendship

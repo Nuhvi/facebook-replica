@@ -28,5 +28,17 @@ RSpec.describe Notification, type: :model do
   end
 
   describe 'methods' do
+    let(:notification) { FactoryBot.build(:notification) }
+    describe '#notifier' do
+      it 'returns the notifier user' do
+        expect(notification.notifier).to eq(notification.notifiable.user)
+      end
+    end
+
+    describe '#notifiable_type' do
+      it 'returns the type of the notifiable as a string' do
+        expect(notification.notifiable_type).to eq(notification.notifiable.class.name)
+      end
+    end
   end
 end

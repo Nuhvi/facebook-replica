@@ -16,6 +16,7 @@ header {
     position: sticky;
     top: -3rem;
     z-index: 9999;
+
     .wrapper {
         position: absolute;
         left: 0;
@@ -57,6 +58,29 @@ header {
 
         font-size: 1rem;
         font-weight: bold;
+
+        .notifications {
+            position: relative;
+
+            div {
+                position: absolute;
+                top: -.5rem;
+                right: -.5rem;
+                min-height: 1rem;
+                min-width: 1rem;
+                padding: 0 .2rem;
+                border-radius: 1rem;
+                display: inline-grid;
+                align-content: center;
+                justify-content: center;
+                background-color: red;
+                color: white;
+
+                span {
+                    font-size: .7rem;
+                }
+            }
+        }
     }
 }
 

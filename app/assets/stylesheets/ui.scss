@@ -248,3 +248,22 @@ a {
     }
 
 }
+
+// notification
+.notification {
+    flex-direction: row;
+    justify-content: space-between;
+    .link{
+        font-weight: bold;
+    }
+}
+.new_notifications {
+    .notification {
+        .red-dot{
+            height: .5rem;
+            width: .5rem;
+            border-radius: 50%;
+            background-color: red;
+        }
+    }
+}

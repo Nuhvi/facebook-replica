@@ -8,4 +8,12 @@ class Notification < ApplicationRecord
   belongs_to :user
 
   default_scope { order(created_at: :desc) }
+
+  def notifier
+    notifiable.user
+  end
+
+  def notifiable_type
+    notifiable.class.name
+  end
 end
