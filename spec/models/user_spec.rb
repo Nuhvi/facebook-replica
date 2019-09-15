@@ -80,5 +80,31 @@ RSpec.describe User, type: :model do
         expect(user.friend?(friend2)).to be false
       end
     end
+
+    # notifications methods
+
+    before do
+      2.times { FactoryBot.create(:notification, user: user) }
+      3.times { FactoryBot.create(:notification, :seen, user: user) }
+    end
+
+    describe '#unseen' do
+      it 'sets all unseen notifications to seen' do
+        expect(user.unseen_notifs.count).to eq(2)
+      end
+    end
+
+    describe '#seen' do
+      it 'returns all  seen notifications' do
+        expect(user.seen_notifs.count).to eq(3)
+      end
+    end
+
+    describe '#set_to_seen' do
+      it 'sets all unseen notifications to seen' do
+        user.see_all_notifs
+        expect(user.seen_notifs.count).to eq(5)
+      end
+    end
   end
 end

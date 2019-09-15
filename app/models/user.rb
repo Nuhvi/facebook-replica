@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
+  # Friendships methods
   def friends
     friends_array = friendships.map { |friendship| friendship.friend if friendship.confirmed }
     friends_array += inverse_friendships.map { |friendship| friendship.user if friendship.confirmed }
@@ -41,5 +42,20 @@ class User < ApplicationRecord
 
   def friend?(user)
     friends.include?(user)
+  end
+
+  # Notifications methods
+
+  def unseen_notifs
+    notifications - (@seen_notifs || seen_notifs)
+  end
+
+  def seen_notifs
+    @seen_notifs ||= []
+    @seen_notifs += unseen_notifs.select(&:seen)
+  end
+
+  def see_all_notifs
+    unseen_notifs.each { |notification| notification.update(seen: true) }
   end
 end
