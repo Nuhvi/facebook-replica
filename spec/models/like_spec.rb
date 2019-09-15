@@ -17,13 +17,23 @@ RSpec.describe Like, type: :model do
   end
 
   describe 'callbacks' do
-    describe '#create_notification' do
-      it 'will create a notification after creating a like' do
-        user = FactoryBot.create(:user)
-        post = FactoryBot.create(:post)
-        expect do
-          post.likes.create(user: user)
-        end.to change(post.user.notifications, :count).by(1)
+    context 'after creation' do
+      let(:user) { FactoryBot.create(:user) }
+      let(:other_user) { FactoryBot.create(:user) }
+      let(:post) { FactoryBot.create(:post, user: user) }
+      context 'liking your own post' do
+        it 'will create a notification after liking the post' do
+          expect do
+            post.likes.create(user: user)
+          end.not_to change(post.user.notifications, :count)
+        end
+      end
+      context 'other user liking your post' do
+        it 'will create a notification after liking the post' do
+          expect do
+            post.likes.create(user: other_user)
+          end.to change(post.user.notifications, :count).by(1)
+        end
       end
     end
   end

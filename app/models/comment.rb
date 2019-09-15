@@ -13,6 +13,6 @@ class Comment < ApplicationRecord
   after_create :create_notification
 
   def create_notification
-    notifications.create(user: post.user)
+    notifications.create(user: post.user) unless user == post.user
   end
 end

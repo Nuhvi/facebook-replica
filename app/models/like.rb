@@ -8,6 +8,6 @@ class Like < ApplicationRecord
   after_create :create_notification
 
   def create_notification
-    notifications.create(user: likeable.user)
+    notifications.create(user: likeable.user) unless user == likeable.user
   end
 end
