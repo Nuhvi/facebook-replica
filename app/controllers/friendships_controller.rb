@@ -7,8 +7,8 @@ class FriendshipsController < ApplicationController
   # all friends
   def index
     case params[:format]
-    when 'requests_recieved' then @friends = @user.friend_requests
-                                  @title = 'Recieved requests'
+    when 'requests_received' then @friends = @user.friend_requests
+                                  @title = 'Received requests'
     when 'requests_sent' then @friends = @user.pending_friends
                               @title = 'Sent requests'
     else @friends = @user.friends

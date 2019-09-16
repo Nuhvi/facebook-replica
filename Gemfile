@@ -59,6 +59,9 @@ group :development do
   gem 'spring-commands-rspec'
 
   gem 'faker'
+
+  gem 'hirb'
+  gem 'pry-rails'
 end
 
 group :test do
