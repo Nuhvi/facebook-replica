@@ -5,11 +5,26 @@
         <%= avatar_for current_user %>
         <h1 class=" ml-2"> <%= yield(:title) %> </h1>
       </div>
-      <div class="container">
+      <div class="container bottom">
         <nav>
-          <%= link_to 'Home', root_url, :class => 'navbar-link' %>
-          <%= link_to 'Find Users', users_path, :class => 'navbar-link' %>
-          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
+          <%= link_to root_url, :class => 'navbar-link' do%>
+            <%= fa_icon "home" %>
+          <% end %>
+          <%= link_to users_path, :class => 'navbar-link' do%>
+            <%= fa_icon "search" %>
+          <% end %>
+          <%= link_to user_friends_path(current_user, format: :requests_received), :class => 'navbar-link' do%>
+            <%= fa_icon "users" %>
+          <% end %>
+          <%= link_to notifications_path, :class => 'navbar-link notifications' do%>
+            <%= fa_icon "bell" %>
+            <% unless (notifs = current_user.unseen_notifs.count).zero? %>
+              <div> <span><%=notifs%></span> </div>
+            <% end %>
+          <% end %>
+          <%= link_to user_path(current_user), :class => 'navbar-link' do%>
+            <%= fa_icon "user" %>
+          <% end %>
           <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
         </nav>
       </div>

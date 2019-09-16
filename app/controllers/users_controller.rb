@@ -9,6 +9,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = current_user.strangers
   end
 end

@@ -11,6 +11,7 @@ RSpec.describe UsersController, type: :controller do
       it 'responds successfully' do
         get :show, params: { id: user.id }
         expect(response).to be_successful
+        expect(assigns(:user)).to eq(user)
       end
     end
 
@@ -33,6 +34,7 @@ RSpec.describe UsersController, type: :controller do
       it 'responds successfully' do
         get :index
         expect(response).to be_successful
+        expect(assigns(:users)).to eq(User.all - [user] - user.friends)
       end
     end
 

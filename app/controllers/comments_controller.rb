@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     return unless @comment.save
 
     flash[:notice] = 'Comment was successfully posted.'
-    redirect_to root_url
+    redirect_back(fallback_location: root_path)
   end
 
   def edit; end
@@ -27,13 +27,13 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     flash[:notice] = 'Comment was successfully deleted.'
-    redirect_to root_url
+    redirect_back(fallback_location: root_path)
   end
 
   private
 
   def comment_owner?
-    redirect_to root_url unless @comment.user == current_user
+    redirect_back(fallback_location: root_path) unless @comment.user == current_user
   end
 
   def set_comment

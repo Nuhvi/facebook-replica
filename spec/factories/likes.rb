@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :like do
-    user { FactoryBot.build(:user) }
+    association :user
     likeable { FactoryBot.build(%i[post comment].sample) }
 
     trait :for_post do
