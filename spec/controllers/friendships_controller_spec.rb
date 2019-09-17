@@ -35,21 +35,21 @@ RSpec.describe FriendshipsController, type: :controller do
       context 'fetching confirmed friends' do
         it 'sets @friends to user confirmed friends' do
           get :index, params: { user_id: user.id }
-          expect(assigns(:friends)).to match_array([friend1, friend2])
+          expect(assigns(:friends)).to eq([ friend2, friend1])
         end
       end
 
       context 'fetching sent requests' do
         it 'sets @friends to user confirmed friends' do
           get :index, params: { user_id: user.id, format: :requests_received }
-          expect(assigns(:friends)).to match_array([sender1, sender2])
+          expect(assigns(:friends)).to eq([sender2, sender1])
         end
       end
 
       context 'fetching received requests' do
         it 'sets @friends to user confirmed friends' do
           get :index, params: { user_id: user.id, format: :requests_sent }
-          expect(assigns(:friends)).to match_array([reciever1, reciever2])
+          expect(assigns(:friends)).to eq([reciever2, reciever1])
         end
       end
     end

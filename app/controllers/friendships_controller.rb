@@ -7,11 +7,11 @@ class FriendshipsController < ApplicationController
   # all friends
   def index
     case params[:format]
-    when 'requests_received' then @friends = @user.requested_friends
+    when 'requests_received' then @friends = @user.requested_friends.reverse
                                   @title = 'Received requests'
-    when 'requests_sent' then @friends = @user.pending_friends
+    when 'requests_sent' then @friends = @user.pending_friends.reverse
                               @title = 'Sent requests'
-    else @friends = @user.friends
+    else @friends = @user.friends.reverse
          @title = 'Friends'
     end
   end

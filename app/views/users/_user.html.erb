@@ -12,7 +12,9 @@
       <%= button_to 'Accept', user_accept_path(user), class: 'btn btn-primary mr-2'%>
       <%= button_to 'Reject', user_unfriend_path(user, format: :reject_request ), method: :delete, class: 'btn btn-danger'%>
     </div>
-  <% elsif !current_user.friends_with?(user) %>
+  <% elsif current_user.friends_with?(user) %>
+    <%= button_to 'Unfriend', user_unfriend_path(user), method: :delete, class: 'btn btn-danger'%>
+  <% else %>
     <%= button_to 'Send friend request', user_friend_path(user), class: 'btn btn-primary'%>
   <% end %>
 </div>
