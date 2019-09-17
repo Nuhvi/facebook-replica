@@ -42,4 +42,14 @@ class User < ApplicationRecord
   def see_all_notifs
     unseen_notifs.each { |notification| notification.update(seen: true) }
   end
+
+  # callbacks
+
+  def on_friendship_created(friendship)
+    notifications.create(notifiable: friendship) unless friendship.status == 'requested'
+  end
+
+  def on_friendship_accepted(friendship)
+    notifications.create(notifiable: friendship)
+  end
 end

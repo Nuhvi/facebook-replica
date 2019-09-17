@@ -18,30 +18,33 @@ class FriendshipsController < ApplicationController
 
   # create request
   def create
-    friend_request = current_user.friendships.build(friend_id: params[:user_id])
-    flash[:notice] = "Friend request submitted to #{@user.first_name}" if friend_request.save
+    friend_request = current_user.friend_request(User.find(params[:user_id]))
+    flash[:notice] = "Friend request submitted to #{@user.first_name}" if friend_request
     redirect_back(fallback_location: root_path)
   end
 
   # accept requests
   def update
-    current_user.confirm_friend(@user)
+    return unless current_user.requested_friends.include?(@user)
+
+    current_user.accept_request(@user)
     redirect_back(fallback_location: root_path)
   end
 
   # unfriend / delete request / reject request
   def destroy
-    friendship = Friendship.find_for_both(current_user.id, @user.id)
+    case params[:format]
+    when 'reject_request'
+      current_user.decline_request(@user)
+      flash[:notice] = "Rejected request from #{@user.first_name}"
+    when 'cancel_request'
+      current_user.remove_friend(@user)
+      flash[:notice] = "Canceled request to #{@user.first_name}"
+    else
+      return unless current_user.friends_with?(@user)
 
-    if friendship
-      friendship.destroy
-      user_name = @user.first_name
-
-      flash[:notice] = case params[:format]
-                       when 'reject_request' then "Rejected request from #{user_name}"
-                       when 'cancel_request' then "Canceled request to #{user_name}"
-                       else "UnFriended #{user_name}"
-                       end
+      current_user.remove_friend(@user)
+      flash[:notice] = "UnFriended #{@user.first_name}"
     end
 
     redirect_back(fallback_location: root_path)
