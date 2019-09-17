@@ -1,6 +1,6 @@
 require 'factory_bot_rails'
 
-FactoryBot.create(:user, email: "example@mail.com", password: 'foobar', first_name: 'demo', last_name: 'user')
+FactoryBot.create(:user, email: "example@mail.com", password: 'foobar', first_name: 'Demo', last_name: 'User')
 
 # users
 11.times.each { |i| FactoryBot.create(:user) }
@@ -16,8 +16,8 @@ FactoryBot.create(:user, email: "example@mail.com", password: 'foobar', first_na
 
 # friendships
 User.all[1..3].each { |user| user.friend_request(User.first) }
-User.all[4..6].each do |user|
+User.all[4..6].each { |friend| User.first.friend_request(friend) }
+User.all[7..9].each do |user|
   user.friend_request(User.first)
   User.first.accept_request(user)
 end
-User.all[7..9].each { |friend| User.first.friend_request(friend) }

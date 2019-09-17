@@ -25,10 +25,7 @@ class User < ApplicationRecord
   # Feed methods
 
   def feed
-    feed_users = friends + self
-    feed = []
-    feed_users.each { |user| feed << user.posts }
-    feed
+    Post.where(user: (friends + [self]))
   end
 
   # Notifications methods

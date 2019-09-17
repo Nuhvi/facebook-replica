@@ -5,7 +5,7 @@ module NotificationsHelper
     case notification.notifiable_type
     when 'Like' then 'liked your'
     when 'Comment' then 'commented on your'
-    when 'Friendship' then current_user.friend?(notification.notifier) ? 'accepted your' : 'sent you'
+    when 'Friendship' then current_user.friends_with?(notification.notifier) ? 'accepted your' : 'sent you'
     end
   end
 
