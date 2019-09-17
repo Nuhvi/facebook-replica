@@ -17,34 +17,19 @@ class User < ApplicationRecord
   has_friendship
 
   # Friendships methods
-  # def friends
-  #   friends_array = friendships.map { |friendship| friendship.friend if friendship.confirmed }
-  #   friends_array += inverse_friendships.map { |friendship| friendship.user if friendship.confirmed }
-  #   friends_array.compact
-  # end
 
-  # def pending_friends
-  #   friendships.map { |friendship| friendship.friend unless friendship.confirmed }.compact
-  # end
+  def strangers
+    User.all - [self] - friends - pending_friends - requested_friends
+  end
 
-  # def friend_requests
-  #   inverse_friendships.map { |friendship| friendship.user unless friendship.confirmed }.compact
-  # end
+  # Feed methods
 
-  # def strangers
-  #   User.all - [self] - friends - pending_friends - friend_requests
-  # end
-
-  # def confirm_friend(user)
-  #   friendship = inverse_friendships.find_by(user_id: user.id)
-  #   return unless friendship
-
-  #   friendship.update(confirmed: true)
-  # end
-
-  # def friend?(user)
-  #   friends.include?(user)
-  # end
+  def feed
+    feed_users = friends + self
+    feed = []
+    feed_users.each { |user| feed << user.posts }
+    feed
+  end
 
   # Notifications methods
 
