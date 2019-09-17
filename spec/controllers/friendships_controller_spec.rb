@@ -35,7 +35,7 @@ RSpec.describe FriendshipsController, type: :controller do
       context 'fetching confirmed friends' do
         it 'sets @friends to user confirmed friends' do
           get :index, params: { user_id: user.id }
-          expect(assigns(:friends)).to eq([ friend2, friend1])
+          expect(assigns(:friends)).to eq([friend2, friend1])
         end
       end
 

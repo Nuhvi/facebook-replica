@@ -5,7 +5,8 @@ module NotificationsHelper
     case notification.notifiable_type
     when 'Like' then 'liked your'
     when 'Comment' then 'commented on your'
-    when 'Friendship' then current_user.friends_with?(notification.notifier) ? 'accepted your' : 'sent you'
+    when 'HasFriendship::Friendship'
+      current_user.friends_with?(notification.notifier) ? 'is now your' : 'sent you a'
     end
   end
 
@@ -13,7 +14,8 @@ module NotificationsHelper
     case notification.notifiable_type
     when 'Like' then notification.notifiable.likeable.class.name
     when 'Comment' then 'Post'
-    when 'Friendship' then 'Friend request'
+    when 'HasFriendship::Friendship'
+      current_user.friends_with?(notification.notifier) ? 'Friend' : 'Friend request'
     end
   end
 
@@ -21,7 +23,7 @@ module NotificationsHelper
     case notification.notifiable_type
     when 'Like' then parent_of_likeable(notification.notifiable.likeable)
     when 'Comment' then notification.notifiable.post
-    when 'Friendship' then notification.notifier
+    when 'HasFriendship::Friendship' then notification.notifier
     end
   end
 
