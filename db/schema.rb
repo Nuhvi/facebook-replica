@@ -26,13 +26,12 @@ ActiveRecord::Schema.define(version: 2019_09_17_070239) do
   end
 
   create_table "friendships", id: :serial, force: :cascade do |t|
-    t.string "friendable_type"
-    t.integer "friendable_id"
+    t.integer "user_id"
     t.integer "friend_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer "status"
-    t.index ["friendable_id", "friend_id"], name: "index_friendships_on_friendable_id_and_friend_id", unique: true
+    t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
   end
 
   create_table "likes", force: :cascade do |t|
@@ -82,6 +81,7 @@ ActiveRecord::Schema.define(version: 2019_09_17_070239) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "friendships", "users"
   add_foreign_key "likes", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "posts", "users"

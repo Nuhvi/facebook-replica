@@ -10,7 +10,7 @@ end
 CreateFriendships.class_eval do
   def self.up
     create_table :friendships do |t|
-      t.references :friendable, polymorphic: true
+      t.references :user, foreign_key: true
       t.integer :friend_id
       t.string :status
 
