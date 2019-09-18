@@ -14,6 +14,15 @@ RSpec.describe Friendship, type: :model do
     it { is_expected.to validate_presence_of(:user) }
     it { is_expected.to validate_presence_of(:friend) }
     it { is_expected.to validate_inclusion_of(:status).in_array([0, 1, 2]) }
+    it 'validate that users are not trying to friend themselves' do
+      friendship = FactoryBot.build(:friendship, user: user, friend: user)
+      expect(friendship).to be_invalid
+    end
+    it 'validate the uniquness of user-friend pair' do
+      FactoryBot.create(:friendship, user: user, friend: friend)
+      friendship = FactoryBot.build(:friendship, user: user, friend: friend)
+      expect(friendship).to be_invalid
+    end
   end
 
   describe 'associations' do
