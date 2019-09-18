@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 2019_09_17_070239) do
     t.integer "friend_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "blocker_id"
     t.integer "status"
     t.index ["friendable_id", "friend_id"], name: "index_friendships_on_friendable_id_and_friend_id", unique: true
   end
