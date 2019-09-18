@@ -18,7 +18,7 @@ class Friendship < ApplicationRecord
   after_update :notify_requester
 
   private
-  
+
   # validations
 
   def not_already_exist
@@ -45,6 +45,10 @@ class Friendship < ApplicationRecord
   end
 
   def notify_requester
-    create_notification(user: friend) unless status_before_last_save.zero?
+    if status_before_last_save.zero? # if the notification was a sent request
+      Notification.find_by(notifiable: self).destroy # find old notification and delete it
+    else 
+      create_notification(user: friend)
+    end
   end
 end

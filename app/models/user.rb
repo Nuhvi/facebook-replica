@@ -47,16 +47,16 @@ class User < ApplicationRecord
   def relations(friend)
     Friendship.where(user: self, friend: friend) + Friendship.where(user: friend, friend: self)
   end
-
+  
   def friends_with?(friend)
     Friendship.where(user: self, friend: friend, status: 2).any?
   end
 
   def decline_request(friend)
-    relations(friend).each { |friendship| friendship.destroy }
+    relations(friend).each(&:destroy)
   end
 
-  alias_method :remove_friend, :decline_request
+  alias remove_friend decline_request
 
   # Feed methods
 

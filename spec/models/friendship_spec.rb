@@ -60,14 +60,19 @@ RSpec.describe Friendship, type: :model do
     end
 
     context 'accept a friend request' do
-      it 'create a notification for the requester' do
+      before do
         FactoryBot.create(:friendship, user: user, friend: friend)
         Friendship.all.each { |f| f.update(status: 2) }
+      end
 
-        expect(friend.notifications.count).to eq(1)
+      it 'create a notification for the requester' do
         expect(user.notifications.count).to eq(1)
         expect(user.notifications.last.notifiable.user).to eq(friend)
         expect(user.notifications.last.notifiable.status).to eq(2)
+      end
+
+      it 'delete the old notification for the requested' do
+        expect(friend.notifications.count).to eq(0)
       end
     end
   end
