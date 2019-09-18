@@ -23,7 +23,11 @@ module NotificationsHelper
     when 'Like' then parent_of_likeable(notification.notifiable.likeable)
     when 'Comment' then notification.notifiable.post
     when 'Friendship'
-      current_user.friends_with?(notification.notifier) ? user_friends_path(current_user) : user_friends_path(current_user, format: :requests_received)
+      if current_user.friends_with?(notification.notifier)
+        user_friends_path(current_user)
+      else
+        user_friends_path(current_user, format: :requests_received)
+      end
     end
   end
 
