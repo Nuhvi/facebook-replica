@@ -47,7 +47,7 @@ class Friendship < ApplicationRecord
   def notify_requester
     if status_before_last_save.zero? # if the notification was a sent request
       Notification.find_by(notifiable: self).destroy # find old notification and delete it
-    else 
+    else
       create_notification(user: friend)
     end
   end
