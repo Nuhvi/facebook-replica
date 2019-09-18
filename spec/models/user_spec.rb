@@ -33,9 +33,48 @@ RSpec.describe User, type: :model do
     describe '#strangers' do
       it 'return all non friends' do
         expect do
-          FactoryBot.create(:friendship,  :accepted, user: user)
-          FactoryBot.create(:friendship,  :accepted, user: user)
+          FactoryBot.create(:friendship, :accepted, user: user)
+          FactoryBot.create(:friendship, :accepted, user: user)
         end.to change { user.strangers.count }.by(2)
+      end
+    end
+
+    describe '#friend_request(friend)' do
+      it 'create two friendships with status 0 and 1 for user and friend respectively' do
+        user.friend_request(friend1)
+        expect(user.friendships.first.status).to eq(0)
+        expect(friend1.friendships.first.status).to eq(1)
+      end
+    end
+
+    describe '#accept_request(friend)' do
+      it 'updates the two rows of a friendship to status: 2' do
+        user.friend_request(friend1)
+        friend1.accept_request(user)
+        expect(user.friendships.first.status).to eq(2)
+        expect(friend1.friendships.first.status).to eq(2)
+      end
+    end
+
+    describe '#friends_with?(friend)' do
+      it 'returns if the user has accepted that friendship' do
+        user.friend_request(friend1)
+        friend1.accept_request(user)
+        friend2.friend_request(user)
+        expect(user.friends_with?(friend1)).to be true
+        expect(user.friends_with?(friend2)).to be false
+        expect(user.friends_with?(friend3)).to be false
+      end
+    end
+
+    describe '#decline_request, #remove_friend' do
+      it 'removes the two rows of friendship' do
+        user.friend_request(friend1)
+        friend1.accept_request(user)
+        friend1.remove_friend(user)
+        expect(user.friends_with?(friend1)).to be false
+        expect(user.friends_with?(friend2)).to be false
+        expect(user.method(:decline_request)).to eq(user.method(:remove_friend))
       end
     end
 

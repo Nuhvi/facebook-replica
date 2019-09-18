@@ -17,43 +17,34 @@ class Friendship < ApplicationRecord
   after_create :notify_requested
   after_update :notify_requester
 
-  # methods
-
-  def exists?(user, friend)
-    find_relation(user, friend) || find_relation(friend, user)
-  end
-
   private
-
-  def find_relation(user, friend)
-    Friendship.where(user: user, friend: friend).first
-  end
-
-  def sender?
-    status.zero?
-  end
-
+  
   # validations
 
   def not_already_exist
-    errors.add(:unique_friendship, 'Friendship already exist!') if find_relation(user, friend)
+    return if Friendship.where(user: user, friend: friend).empty?
+
+    errors.add(:unique_friendship, 'Friendship already exist!')
   end
 
   def not_friending_self
-    errors.add(:invalid_self_friendship, 'One can\'t friend oneself') if user == friend
+    errors.add(:invalid_self_friendship, 'One can\'t friend oneself!') if user == friend
   end
 
   # callbacks
+  def sender?
+    status.zero?
+  end
 
   def create_request
     friend.friendships.create(friend: user, status: 1) if sender?
   end
 
   def notify_requested
-    friend.notifications.create(notifiable: self) if sender?
+    create_notification(user: friend) if sender?
   end
 
   def notify_requester
-    friend.notifications.create(notifiable: self) unless status_before_last_save.zero?
+    create_notification(user: friend) unless status_before_last_save.zero?
   end
 end

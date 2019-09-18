@@ -36,8 +36,27 @@ class User < ApplicationRecord
   end
 
   def friend_request(friend)
-    return unless friend == self || Friendship.exists?(self, friend)
+    friendships.create(friend: friend, status: 0)
+    friend.friendships.create(friend: self, status: 1)
   end
+
+  def accept_request(friend)
+    relations(friend).each { |friendship| friendship.update(status: 2) }
+  end
+
+  def relations(friend)
+    Friendship.where(user: self, friend: friend) + Friendship.where(user: friend, friend: self)
+  end
+
+  def friends_with?(friend)
+    Friendship.where(user: self, friend: friend, status: 2).any?
+  end
+
+  def decline_request(friend)
+    relations(friend).each { |friendship| friendship.destroy }
+  end
+
+  alias_method :remove_friend, :decline_request
 
   # Feed methods
 
