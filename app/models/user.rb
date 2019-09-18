@@ -13,13 +13,30 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :friendships, dependent: :destroy
 
-  has_friendship
+  has_many :friends,
+           -> { where friendships: { status: 2 } },
+           through: :friendships
+
+  has_many :pending_friends,
+           -> { where friendships: { status: 0 } },
+           through: :friendships,
+           source: :friend
+
+  has_many :requested_friends,
+           -> { where friendships: { status: 1 } },
+           through: :friendships,
+           source: :friend
 
   # Friendships methods
 
   def strangers
     User.all - [self] - friends - pending_friends - requested_friends
+  end
+
+  def friend_request(friend)
+    return unless friend == self || Friendship.exists?(self, friend)
   end
 
   # Feed methods

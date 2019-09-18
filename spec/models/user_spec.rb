@@ -33,9 +33,8 @@ RSpec.describe User, type: :model do
     describe '#strangers' do
       it 'return all non friends' do
         expect do
-          friend1.friend_request(user)
-          friend2.friend_request(user)
-          user.accept_request(friend1)
+          FactoryBot.create(:friendship,  :accepted, user: user)
+          FactoryBot.create(:friendship,  :accepted, user: user)
         end.to change { user.strangers.count }.by(2)
       end
     end
@@ -63,28 +62,6 @@ RSpec.describe User, type: :model do
       it 'sets all unseen notifications to seen' do
         user.see_all_notifs
         expect(user.seen_notifs.count).to eq(5)
-      end
-    end
-  end
-
-  describe 'callbacks' do
-    context 'send a friend request to someone' do
-      it 'create a notification for that user' do
-        expect do
-          user.friend_request(friend1)
-        end.to change(friend1.notifications, :count).by(1)
-        expect do
-          user.friend_request(friend2)
-        end.not_to change(user.notifications, :count)
-      end
-    end
-
-    context 'accept a friend request' do
-      it 'create a notification for the requester' do
-        expect do
-          user.friend_request(friend1)
-          friend1.accept_request(user)
-        end.to change(user.notifications, :count).by(1)
       end
     end
   end
