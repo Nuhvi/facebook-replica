@@ -30,6 +30,12 @@ class User < ApplicationRecord
            through: :friendships,
            source: :friend
 
+  # user data
+
+  def full_name
+    "#{first_name} #{last_name}"
+ end
+
   # OmniAuth
 
   def self.from_omniauth(auth)

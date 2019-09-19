@@ -2,7 +2,7 @@
   <div class='post card'>
     <div class="header">
       <div class="avatar-name">
-        <%= avatar_for current_user %>
+        <%= avatar_for post.user %>
         <div class="name-time">
           <%= name_for(post.user)%>
           <%= link_to(post) do%>
