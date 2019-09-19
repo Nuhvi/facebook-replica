@@ -79,6 +79,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # All Environments
 gem 'devise'
+gem 'omniauth-facebook'
 
 # Bootstrap
 gem 'bootstrap', '~> 4.3.1'
