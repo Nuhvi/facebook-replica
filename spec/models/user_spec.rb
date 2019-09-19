@@ -24,60 +24,57 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:notifications) }
   end
 
+  let(:user) { FactoryBot.create(:user) }
+  let(:friend1) { FactoryBot.create(:friend) }
+  let(:friend2) { FactoryBot.create(:friend) }
+  let(:friend3) { FactoryBot.create(:friend) }
+
   describe 'methods' do
-    let(:user) { FactoryBot.create(:user) }
-    let(:friend1) { FactoryBot.create(:friend) }
-    let(:friend2) { FactoryBot.create(:friend) }
-
-    describe '#friends' do
-      before do
-        user.friendships.create(friend: friend1, confirmed: true)
-        friend2.friendships.create(friend: user, confirmed: true)
-      end
-      it 'return an array of freiends from all confirmed friendships' do
-        expect(user.friends).to match_array([friend2, friend1])
+    describe '#strangers' do
+      it 'return all non friends' do
+        expect do
+          FactoryBot.create(:friendship, :accepted, user: user)
+          FactoryBot.create(:friendship, :accepted, user: user)
+        end.to change { user.strangers.count }.by(2)
       end
     end
 
-    describe '#pending_friends' do
-      before do
-        user.friendships.create(friend: friend1)
-        user.friendships.create(friend: friend2)
-      end
-      it 'return an array of all pending friends' do
-        expect(user.pending_friends).to match_array([friend2, friend1])
+    describe '#friend_request(friend)' do
+      it 'create two friendships with status 0 and 1 for user and friend respectively' do
+        user.friend_request(friend1)
+        expect(user.friendships.first.status).to eq(0)
+        expect(friend1.friendships.first.status).to eq(1)
       end
     end
 
-    describe '#friend_requests' do
-      before do
-        friend1.friendships.create(friend: user)
-        friend2.friendships.create(friend: user)
-      end
-      it 'return an array of all friends requests users' do
-        expect(user.friend_requests).to match_array([friend2, friend1])
-      end
-    end
-
-    describe '#confirm_friend(user)' do
-      before do
-        friend1.friendships.create(friend: user)
-        user.confirm_friend(friend1)
-      end
-
-      it 'confirms friend request' do
-        expect(friend1.friendships.find_by(friend: user).confirmed).to be true
+    describe '#accept_request(friend)' do
+      it 'updates the two rows of a friendship to status: 2' do
+        user.friend_request(friend1)
+        friend1.accept_request(user)
+        expect(user.friendships.first.status).to eq(2)
+        expect(friend1.friendships.first.status).to eq(2)
       end
     end
 
-    describe '#friend?(user)' do
-      before do
-        friend1.friendships.create(friend: user, confirmed: true)
-        friend2.friendships.create(friend: user)
+    describe '#friends_with?(friend)' do
+      it 'returns if the user has accepted that friendship' do
+        user.friend_request(friend1)
+        friend1.accept_request(user)
+        friend2.friend_request(user)
+        expect(user.friends_with?(friend1)).to be true
+        expect(user.friends_with?(friend2)).to be false
+        expect(user.friends_with?(friend3)).to be false
       end
-      it 'return whether a user is a confirmed friend' do
-        expect(user.friend?(friend1)).to be true
-        expect(user.friend?(friend2)).to be false
+    end
+
+    describe '#decline_request, #remove_friend' do
+      it 'removes the two rows of friendship' do
+        user.friend_request(friend1)
+        friend1.accept_request(user)
+        friend1.remove_friend(user)
+        expect(user.friends_with?(friend1)).to be false
+        expect(user.friends_with?(friend2)).to be false
+        expect(user.method(:decline_request)).to eq(user.method(:remove_friend))
       end
     end
 

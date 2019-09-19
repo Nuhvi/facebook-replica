@@ -4,9 +4,13 @@ FactoryBot.define do
   factory :friendship do
     association :user
     association :friend
+    status { 0 }
 
-    trait :confirmed do
-      confirmed { true }
+    trait :requested do
+      status { 1 }
+    end
+    trait :accepted do
+      status { 2 }
     end
   end
 end

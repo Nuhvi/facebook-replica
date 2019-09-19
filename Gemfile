@@ -44,6 +44,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.8.0'
+
+  gem 'has_friendship'
 end
 
 group :development do

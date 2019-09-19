@@ -10,10 +10,8 @@ class Notification < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   def notifier
-    notifiable.user
-  end
+    return notifiable.friendable if notifiable_type == 'HasFriendship::Friendship'
 
-  def notifiable_type
-    notifiable.class.name
+    notifiable.user
   end
 end
