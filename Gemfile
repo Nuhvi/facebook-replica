@@ -80,6 +80,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # All Environments
 gem 'devise'
 gem 'omniauth-facebook'
+gem "figaro"
 
 # Bootstrap
 gem 'bootstrap', '~> 4.3.1'
