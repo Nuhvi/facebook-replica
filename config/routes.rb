@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   get 'notifications/index'
   get 'friendships/index'
-  devise_for :users
+  
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   authenticated :user do
     root 'posts#index'
