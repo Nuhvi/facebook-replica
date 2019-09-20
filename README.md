@@ -4,7 +4,7 @@ This is an excercise building a clone of some of Facebook's features using Ruby 
 
 ## Live Demo
 
-[Check a live version on Heroku](https://facebook-replica.herokuapp.com)
+[Check a live version on Heroku](https://fcborepl.herokuapp.com/)
   
 ## Features
 
