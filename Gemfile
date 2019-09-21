@@ -38,14 +38,24 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Authentication
+gem 'devise'
+gem 'figaro'
+gem 'omniauth-facebook'
+
+# Bootstrap
+gem 'bootstrap', '~> 4.3.1'
+gem 'font-awesome-rails'
+gem 'jquery-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'has_friendship'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.8.0'
-
-  gem 'has_friendship'
 end
 
 group :development do
@@ -59,8 +69,6 @@ group :development do
 
   gem 'guard-rspec'
   gem 'spring-commands-rspec'
-
-  gem 'faker'
 
   gem 'hirb'
   gem 'pry-rails'
@@ -76,13 +84,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-# All Environments
-gem 'devise'
-gem 'figaro'
-gem 'omniauth-facebook'
-
-# Bootstrap
-gem 'bootstrap', '~> 4.3.1'
-gem 'font-awesome-rails'
-gem 'jquery-rails'

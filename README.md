@@ -2,11 +2,9 @@
 
 This is an excercise building a clone of some of Facebook's features using Ruby on Rails.
 
- ## APP_ID: 383775335850852
- 
-## Demo
+## Live Demo
 
-Herouku link // later.
+[Check a live version on Heroku](https://fcborepl.herokuapp.com/)
   
 ## Features
 
@@ -46,35 +44,49 @@ Herouku link // later.
 
 ### Requirements
 
-- Ruby '2.6.0'
-- Bundler
-- Rails 5.2.3
-- Postgresql
+- Ruby       '~>2.6.0'
+- Bundler    '2.0.0'
+- Rails      '~> 5.2.3'
+- Postgresql '>= 0.18', '< 2.0'
 
 ### Getting Started
 
 Clone the repo and then install the needed gems:
 
 ```console
- $ bundle install --without production
+ bundle install --without production
 ```
 
-Migrate the database:
+Create and Migrate the database:
 
 ```console
- $ rails db:migrate
+ rails db:create
+ rails db:migrate
 ```
 
-Populate the database:
+Populate the database [Optional] :
 
 ```console
- $ rails db:seed
+ rails db:seed
+```
+
+Setup your Omniauth App [Optional] :
+
+```console
+ bundle exec figaro install
+```
+
+open the  config/application.yml and enter yout APP_ID and APP_SECRET, for example:
+
+```yaml
+facebook_app_id: '5346435734534'
+facebook_app_secret: '*********************'
 ```
 
 You'll be ready to run the app in a local server:
 
 ```console
- $ rails server
+ rails server
 ```
 
 Visit <http://localhost:3000/>
