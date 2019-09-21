@@ -1,0 +1,62 @@
+<% unless post.nil? %>
+  <div class='post card'>
+    <div class="header">
+      <div class="avatar-name">
+        <%= avatar_for post.user %>
+        <div class="name-time">
+          <%= name_for(post.user)%>
+          <%= link_to(post) do%>
+            <p class="post_time"> Published <%= time_ago_in_words(post.created_at) %> ago </p>
+          <% end %>
+        </div>
+      </div>
+      <% if post.user == current_user && !edit_path? %>
+        <div class="dropdown">
+          <button class="btn " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= fa_icon "ellipsis-h" %>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <%= link_to "Edit", edit_post_path(post), class: 'btn ' %>
+            <%= button_to "Delete", post, :method => :delete, class: 'btn ' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% if  edit_path? %>
+      <%= render 'post_form'%>
+    <% end %>
+    <% unless edit_path? %>
+      <div class='content'>
+        <%= post.content %>
+      </div>
+      <div class='stats d-flex justify-content-end text-secondary'>
+        <%= link_to likes_path(likeable_data(post)), class: 'likes-count' do %>
+          <%= pluralize(post.likes.count, 'Like')%>
+        <% end %>
+        <%= link_to post_path(post), class: 'likes-count ml-2' do %>
+          <%= pluralize(post.comments.count, 'Comment')%>
+        <% end %>
+      </div>
+      <div class="dropdown-divider m-0"></div>
+      <div class='like-comment row '>
+        <% if liked?(post) %>
+          <%= link_to like_path(like_id(post)), class: 'btn col liked', method: :delete do%>
+            <%= fa_icon "thumbs-up", class: "mr-2" %> UnLike
+          <% end %>
+        <% else %>
+          <%= link_to likes_path(likeable_data(post)), class: 'btn col', method: :post do%>
+            <%= fa_icon "thumbs-up", class: "mr-2" %> Like
+          <% end %>
+        <% end %>
+        <a class="btn col " data-toggle="collapse" href="#Comments-area<%= post.id%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <%= fa_icon "comment", class: "mr-2" %> Comment
+        </a>
+      </div>
+      <div class="comment-area collapse <%= 'show' if show_path? %>" id="Comments-area<%= post.id%>">
+        <div class="dropdown-divider mt-0"></div>
+        <%= render partial: "comments/comment_form", locals: {post: post} %>
+        <small class="text-muted"><%= render post.comments %></small>
+      </div>
+    <% end %>
+  </div>
+<% end %>

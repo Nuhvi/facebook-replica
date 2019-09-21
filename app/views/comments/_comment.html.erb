@@ -1,0 +1,39 @@
+<div class='comment p-2 d-flex <%= 'card' if edit_path?%>'>
+  <div class='d-flex col-11 p-0'>
+    <%= avatar_for(comment.user) %>
+    <div class='ml-2 col p-0'>
+      <%= name_for(comment.user)%>
+      <small class="post_time ml-1"><%= time_ago_in_words(comment.created_at) %> ago </small>
+      <% if edit_path?%>
+        <%= form_for comment do |f| %>
+          <%= render 'devise/shared/error_messages', resource: f.object %>
+          <%= f.hidden_field :post_id, value: comment.post.id %>
+          <%= f.text_field :content, placeholder: "Write a comment...", class: 'form-control', required: true, autocomplete: 'off' %>
+          <%= f.submit "Comment", class: "btn btn-primary" %>
+        <% end %>
+      <% else %>
+        <p class="m-0"> <%= comment.content%> </p>
+        <% if liked?(comment) %>
+          <%= link_to like_path(like_id(comment)), class: 'liked', method: :delete do%>
+            UnLike
+          <% end %>
+        <% else %>
+          <%= link_to likes_path(likeable_data(comment)), class: '', method: :post do%>
+            Like
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <% if comment.user == current_user && !edit_path? %>
+    <div class="dropdown ">
+      <button class="btn " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= fa_icon "ellipsis-h" %>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+        <%= link_to "Edit", edit_comment_path(comment), class: 'btn ' %>
+        <%= button_to "Delete", comment, :method => :delete, class: 'btn ' %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,10 @@
+<% unless current_user ==  notification.notifier%>
+  <div class="notification card">
+    <span>
+      <%=name_for(notification.notifier)%>
+      <%= notification_action(notification)%>
+      <%= link_to notifiable_subject_type(notification),notifiable_path(notification), class:'link' %>
+    </span>
+    <div class="red-dot"></div>
+  </div>
+<% end %>

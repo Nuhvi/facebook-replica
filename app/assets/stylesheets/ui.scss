@@ -1,0 +1,269 @@
+$border-radius: .4rem;
+$border-color: #e6e4ea;
+
+// customize Bootstrap
+.card {
+    margin-bottom: 1rem;
+    border-radius: $border-radius;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+        0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+        0px 1px 3px 0px rgba(0, 0, 0, .12);
+    border: none;
+
+    padding: .5rem 1rem;
+}
+
+a {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.btn {
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.d-flex {
+    flex-direction: row;
+}
+
+@mixin edit-delete-dropdown() {
+    .dropdown {
+        button {
+            display: flex;
+            align-content: center;
+            color: gray;
+
+            &:hover {
+                color: black;
+            }
+        }
+
+        .dropdown-menu {
+            min-width: 0;
+            left: -100%;
+
+            .btn {
+                width: 100%;
+                border-radius: 0;
+
+                &:hover {
+                    background-color: rgb(241, 241, 241);
+                }
+            }
+        }
+
+    }
+}
+
+
+// Elements
+
+// User elements
+.avatar {
+    position: relative;
+    overflow: hidden; // hide content that overflows outside the parent
+    padding-bottom: 100%;
+    border-radius: 50%;
+
+    img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.username {
+    font-weight: bold;
+    margin: 0;
+    color: black;
+}
+
+.avatar-name {
+    display: grid;
+    grid-template-columns: 40px auto;
+
+    .avatar {
+        height: 2rem;
+    }
+
+    .name-time {
+        margin-left: .5rem;
+        padding: .2rem 0;
+
+        .username {
+            line-height: 80%;
+        }
+    }
+}
+
+
+// Forms
+.form-control {
+    height: 2rem;
+    border-radius: 1rem;
+}
+
+// create new post
+.new-post {
+    display: grid;
+    grid-template-columns: 40px auto;
+    align-items: center;
+    grid-gap: .5rem;
+
+    padding: .5rem 1rem;
+
+    .btn {
+        display: none;
+    }
+}
+
+
+// post element
+.post {
+    width: 100%;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        padding: .5rem 0;
+
+        .post_time {
+            font-size: 10px;
+            color: gray;
+            margin: 0;
+        }
+
+        @include edit-delete-dropdown();
+    }
+
+    .content {
+        margin-bottom: .5rem;
+    }
+
+    .stats {
+        font-size: 13px;
+
+        p {
+            margin-bottom: .5rem;
+        }
+
+        a {
+            color: gray;
+
+            &:hover {
+                color: black;
+            }
+        }
+    }
+
+    .like-comment {
+        a {
+            color: gray;
+
+            &:hover {
+                color: black;
+            }
+
+
+            &.liked {
+                color: black;
+                font-weight: bold;
+
+                &:hover {
+                    color: gray;
+                }
+            }
+        }
+    }
+
+    .new_comment {
+        display: flex;
+
+        .form-control {
+            width: 100%;
+            height: 2rem;
+
+            border-radius: 1rem;
+        }
+
+        .btn {
+            display: none;
+        }
+    }
+
+}
+
+// User card
+.user {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    input {
+        float: right;
+    }
+}
+
+// Comments
+
+.comment {
+    @include edit-delete-dropdown();
+
+    .avatar {
+        display: block;
+        width: 2rem;
+        padding: 0;
+        height: 2rem;
+    }
+
+    .edit_comment {
+        margin: .5rem 0;
+        width: 100%;
+
+        .btn {
+            display: none;
+        }
+    }
+
+    a {
+        color: gray;
+
+        &:hover {
+            color: black;
+        }
+
+        &.liked {
+            color: black;
+            font-weight: bold;
+
+            &:hover {
+                color: gray;
+            }
+        }
+    }
+
+}
+
+// notification
+.notification {
+    flex-direction: row;
+    justify-content: space-between;
+    .link{
+        font-weight: bold;
+    }
+}
+.new_notifications {
+    .notification {
+        .red-dot{
+            height: .5rem;
+            width: .5rem;
+            border-radius: 50%;
+            background-color: red;
+        }
+    }
+}

@@ -1,0 +1,123 @@
+// Alert
+.alert-container {
+    position: absolute;
+    z-index: 999999;
+    width: 100%;
+    top: 1rem;
+
+    .alert {
+        width: 50%;
+        margin: auto;
+    }
+}
+
+// Header
+header {
+    position: sticky;
+    top: -3rem;
+    z-index: 9999;
+
+    .wrapper {
+        position: absolute;
+        left: 0;
+        right: 0;
+        background-color: white;
+        border-bottom: 1px solid #ecebee;
+    }
+
+    .container {
+        height: 3rem;
+        max-width: 600px;
+        padding: .5rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &.top {
+            justify-content: left;
+
+            .avatar {
+                width: 2rem;
+                padding: 0;
+                height: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+                font-weight: bold;
+                margin: 0;
+            }
+        }
+
+        &.bottom {
+            padding: 0;
+        }
+    }
+    
+
+    nav {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        font-size: 1rem;
+        font-weight: bold;
+
+        .navbar-link {
+            width: 25%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem;
+
+            &:hover {
+                border-bottom: 2px solid;
+            }
+        }
+
+        .notifications {
+            position: relative;
+
+            div {
+                position: absolute;
+                top: .25rem;
+                right: 1.5rem;
+                min-height: 1rem;
+                min-width: 1rem;
+                padding: 0 .2rem;
+                border-radius: 1rem;
+                display: inline-grid;
+                align-content: center;
+                justify-content: center;
+                background-color: red;
+                color: white;
+
+                span {
+                    font-size: .7rem;
+                }
+            }
+        }
+    }
+}
+
+// Feed
+main {
+    min-height: 100vh;
+    max-width: 600px;
+    margin: auto;
+
+    padding-top: 6rem;
+
+    background-color: #f3f3f5;
+
+    border-left: 2px solid #ecebee;
+    border-right: 2px solid #ecebee;
+
+
+    .timeline_container {
+        padding: 2rem 0;
+    }
+}
