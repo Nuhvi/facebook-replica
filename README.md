@@ -83,6 +83,12 @@ facebook_app_id: '5346435734534'
 facebook_app_secret: '*********************'
 ```
 
+run tests
+
+```console
+ rspec
+```
+
 You'll be ready to run the app in a local server:
 
 ```console
