@@ -9,7 +9,7 @@ Rails.application.configure do
   config.cache_classes = false
 
   # devise setup
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000', from: 'no-reply@fcborepl.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { address: "localhost", port: 1025}
 
