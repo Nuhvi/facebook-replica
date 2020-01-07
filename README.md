@@ -1,12 +1,20 @@
-# Facebook Replica
+<h1 align="center">Welcome to Facebook replica 👋</h1>
+<p>
+  <a href="https://github.com/Nazeh/facebook-replica/blob/master/README.md" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://twitter.com/arnazeh" target="_blank">
+    <img alt="Twitter: arnazeh" src="https://img.shields.io/twitter/follow/arnazeh.svg?style=social" />
+  </a>
+</p>
 
-This is an excercise building a clone of some of Facebook's features using Ruby on Rails.
+> An excercise building a clone of some of Facebook's features using Ruby on Rails.
 
-## Live Demo
+### ✨ [Demo](https://fcborepl.herokuapp.com/)
 
-[Check a live version on Heroku](https://fcborepl.herokuapp.com/)
-  
-## Features
+<img alt='screenshot' src='docs/screenshot.webp'>
+
+## 👌 Features
 
 - **Users**
   - Sign-up / login / logout.
@@ -36,20 +44,18 @@ This is an excercise building a clone of some of Facebook's features using Ruby 
     - Likes for your comments / posts.
     - Friendship requests and acceptance.
 
-## Entity Relationship Diagram (ERD)
+## 📝 Entity Relationship Diagram (ERD)
 
 ![alt text](docs/facebook_replica_ERD.jpeg)
 
-## Local Installation
-
-### Requirements
+## Requirements
 
 - Ruby       '~>2.6.0'
 - Bundler    '2.0.0'
 - Rails      '~> 5.2.3'
 - Postgresql '>= 0.18', '< 2.0'
 
-### Getting Started
+## Install
 
 Clone the repo and then install the needed gems:
 
@@ -63,6 +69,9 @@ Create and Migrate the database:
  rails db:create
  rails db:migrate
 ```
+
+## Usage
+
 
 Populate the database [Optional] :
 
@@ -83,10 +92,21 @@ facebook_app_id: '5346435734534'
 facebook_app_secret: '*********************'
 ```
 
-You'll be ready to run the app in a local server:
+Run the app in a local server:
 
 ```console
  rails server
 ```
 
-Visit <http://localhost:3000/>
+## Author
+
+👤 **Nazeh**
+
+* Website: [Nazeh.me](https://www.nazeh.me/)
+* Twitter: [@arnazeh](https://twitter.com/arnazeh)
+* Github: [@nazeh](https://github.com/nazeh)
+* LinkedIn: [@arnazeh](https://linkedin.com/in/arnazeh)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
