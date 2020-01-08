@@ -8,7 +8,7 @@
   </a>
 </p>
 
-> An excercise building a clone of some of Facebook's features using Ruby on Rails.
+> An exercise building a clone of some of Facebook's features using Ruby on Rails.
 
 ### ✨ [Demo](https://fcborepl.herokuapp.com/)
 
@@ -18,9 +18,9 @@
 
 - **Users**
   - Sign-up / login / logout.
-  - Show profile page.
+  - Show the profile page.
   - Create / update / delete posts.
-  - Has many posts.
+  - Have many posts.
 
 - **Posts**
   - Create / update / delete.
@@ -38,10 +38,10 @@
   - Remove existing friends.
   - Feed with posts from yourself and friends only.
 
-- **Notificaions**
-  - Recieve a notification for :
+- **Notifications**
+  - Receive  a notification for :
     - Comments on your posts.
-    - Likes for your comments / posts.
+    - Likes for your comments/posts.
     - Friendship requests and acceptance.
 
 ## 📝 Entity Relationship Diagram (ERD)
@@ -85,7 +85,7 @@ Setup your Omniauth App [Optional] :
  bundle exec figaro install
 ```
 
-open the  config/application.yml and enter yout APP_ID and APP_SECRET, for example:
+open the  config/application.yml and enter your APP_ID and APP_SECRET, for example:
 
 ```yaml
 facebook_app_id: '5346435734534'
